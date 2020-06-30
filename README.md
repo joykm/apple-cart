@@ -1,4 +1,4 @@
-# CS361-Project
+# CS361-Group Project
 
 ### Contributors
 * Kevin Joy
