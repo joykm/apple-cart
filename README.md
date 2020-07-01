@@ -3,6 +3,6 @@
 ### Contributors
 * Kevin Joy
 * George Kochera
-* Blake Lester
+* Blake Lester - lesterst@oregonstate.edu
 * Quinn Wilkins
 * Ellen Yang
