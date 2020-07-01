@@ -5,4 +5,4 @@
 * George Kochera
 * Blake Lester - lesterst@oregonstate.edu
 * Quinn Wilkins
-* Ellen Yang
+* Ellen Yang - yange@oregonstate.edu
