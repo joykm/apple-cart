@@ -34,3 +34,10 @@ This will install all the dependencies for our team's app for you, on your local
 At this point, the web app is 'installed' and ready to use. Anytime you want to run the app, you would do the following from the command-line in the folder that contains 'app.js'
 `node app.js`
 As long as you do not get any errors, you should be able to open up your browser, and navigate to http://localhost:8080. This is the running instance of the web app. 
+
+
+### Standards
+
+- Handlebars is set to use *.hbs file-extension. To save everyone from having to type *.handlebars when creating new templates.
+- The ClearDB (MySQL) database credentials are stored in process.env.CLEARDB_DATABASE_URL
+- All static assets such as pictures, icons, JS files, and stylesheets can be stored in ./public and the path to those assets can be referred to in HTML as './css/example.css' or './img/apple_cart.jpg' as examples.
