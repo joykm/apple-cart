@@ -12,6 +12,7 @@ Dependencies
 
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mysql = require('mysql')
 
 /*
 Create Express Server
@@ -34,13 +35,30 @@ app.engine('hbs', exphbs(
 app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false}))
+
+/*
+Database Setup and Configuration
+*/
+
+const connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL)
 
 /*
 Routing
 */
 
 app.get('/', function(req, res) {
-    res.render('home')
+
+    // Simple query to make sure the database is connected.
+    var data = 'ClearDB Connected. Users are: '
+    connection.query('SELECT * FROM `users`', function(error, results, fields){
+        results.forEach(element => {
+            data += element.first_name + ' '
+        });
+        res.render('home', {data: data})    
+    })
+    
 })
 
 /*
