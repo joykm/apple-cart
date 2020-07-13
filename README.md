@@ -20,4 +20,4 @@ Front-End      | Back-End
 ---------------|---------
 HTML           |  Node.JS
 Bootstrap CSS  |  Express
-               |  My SQL
+-         |  My SQL
