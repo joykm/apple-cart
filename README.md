@@ -3,7 +3,7 @@
 A store inventory management system, built in [stack details here].
 
 ### Architecture
-![Monolith](./documenation/apple_cart_monolith.png)
+![Monolith](./documentation/apple_cart_monolith.png)
 
 ### Contributors
 * Kevin Joy - joyke@oregonstate.edu
