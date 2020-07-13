@@ -11,3 +11,13 @@ A store inventory management system, built in [stack details here].
 * Blake Lester - lesterst@oregonstate.edu
 * Quinn Wilkins - wilkinsq@oregonstate.edu
 * Ellen Yang - yange@oregonstate.edu
+
+### Technology Stack
+
+The Apple Cart uses a simple, lightweight technology stack.
+
+Front-End      | Back-End
+---------------|---------
+HTML           |  Node.JS
+Bootstrap CSS  |  Express
+               |  My SQL
