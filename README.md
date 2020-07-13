@@ -41,3 +41,4 @@ As long as you do not get any errors, you should be able to open up your browser
 - Handlebars is set to use *.hbs file-extension. To save everyone from having to type *.handlebars when creating new templates.
 - The ClearDB (MySQL) database credentials are stored in process.env.CLEARDB_DATABASE_URL
 - All static assets such as pictures, icons, JS files, and stylesheets can be stored in ./public and the path to those assets can be referred to in HTML as './css/example.css' or './img/apple_cart.jpg' as examples.
+- When writing SQL queries, use the following convention to avoid possible conflicts down the road: (1) table and attribute references are all lowercase (2) SQL commands and reserved words are all caps. Ex: `SELECT first_name, last_name FROM users WHERE id = 1`
