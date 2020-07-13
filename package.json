@@ -1,0 +1,31 @@
+{
+  "name": "apple-cart",
+  "version": "1.0.0",
+  "description": "The CS361 Project for Team 32. The Apple Cart is a Store Inventory Management System.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS361-Globetrotters/CS361-Project.git"
+  },
+  "keywords": [
+    "store",
+    "grocery",
+    "inventory",
+    "system",
+    "apple",
+    "cart"
+  ],
+  "author": "Quinn Wilkins, Ellen Yang, George Kochera, Blake Lester, Kevin Joy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS361-Globetrotters/CS361-Project/issues"
+  },
+  "homepage": "https://github.com/CS361-Globetrotters/CS361-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.0.0"
+  }
+}
