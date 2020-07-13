@@ -22,6 +22,10 @@ HTML           |  Node.JS
 Bootstrap CSS  |  Express
 &nbsp;         |  My SQL
 
+### Database Design
+<img src="./documentation/CS361_ERD.png" alt="ERD" width="500">
+<img src="./documentation/CS361_Schema.png" alt="Schema" width="500">
+
 ### Setup
 
 1. Make sure you have a version of Node.JS installed on your machine. Every system and setup is a bit different so the best instructions can be found at [Node.JS](https://nodejs.org/en/).
