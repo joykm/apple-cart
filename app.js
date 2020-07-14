@@ -46,6 +46,16 @@ const connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL)
 handleDisconnect(connection)
 
 /*
+Routing Constants
+  example use: 
+    const products = 'test-products';
+    "app.get('/' + products, function(...."
+    res.render(products, {data:data})
+*/
+
+const home = 'home';
+
+/*
 Routing
 */
 
@@ -56,12 +66,12 @@ app.get('/', function(req, res) {
     connection.query('SELECT * FROM `users`', function(error, results, fields){
         if (error) {
             data = 'ClearDB is down!'
-            res.render('home', {data: data})
+            res.render(home, {data: data})
         } else {
         results.forEach(element => {
             data += element.first_name + ' '
         });
-        res.render('home', {data: data})    
+        res.render(home, {data: data})    
     }
     })
     
