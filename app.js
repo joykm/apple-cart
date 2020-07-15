@@ -54,6 +54,7 @@ Routing Constants
 */
 
 const home = 'home';
+const inventory = 'inventory';
 
 /*
 Routing
@@ -78,12 +79,12 @@ app.get('/', function(req, res) {
 })
 
 
-app.get('/inventory', function(req, res) {
+app.get('/' + inventory, function(req, res) {
     connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold', function(error, results, fields){
         if (error) {
           console.log("Error in loading buyer page.")
         } 
-        res.render('inventory', results)
+        res.render(inventory, results)
     })
   })
 
