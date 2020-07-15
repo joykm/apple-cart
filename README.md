@@ -84,7 +84,7 @@ Once the code is reviewed, your programming partner can merge the code to master
   3.  Copy the commit hash for that commit
   4.  Use  "git reset --soft <commit_hash>" to uncommit your current changes (this will not erase your changes, it will only un-commit them).
   5.  Use "git status" to verify that your changes are still there and they are staged (they will be green).
-  6.  Use unstage command (TODO: find un-stage command))
+  6.  Use "git restore --staged <file>" to unstage the changes
   7.  Use "git status" again to verify that your changes are still there, but now they are unstaged (they will be red).
   8.  Use "git branch <name>" to create a new branch with your current changes
 	9.  Use "git checkout <branch>" to switch to that branch
