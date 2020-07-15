@@ -55,8 +55,7 @@ As long as you do not get any errors, you should be able to open up your browser
 - Should should only have to clone the github repository one time in the beginning. For the remainder of the project, you can use "git status" to check if your local master is up to date with the remote master on git hub. If it is not, you can use "git pull" to update your local master.
 
 
-Assumed: you have a cloned github copy on your desktop, you have no unmerged branches, you want to add a new feature
-
+Assumed from here: you have a cloned github copy on your desktop, you have no unmerged branches, you want to add a new feature
 - In terminal, navigate to your local github repository
 - use "git branch" to determine what branch you are in
 - use "git checkout master" to navigate to your local master
