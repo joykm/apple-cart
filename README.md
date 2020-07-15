@@ -55,7 +55,7 @@ As long as you do not get any errors, you should be able to open up your browser
 - Should should only have to clone the github repository one time in the beginning. For the remainder of the project, you can use "git status" to check if your local master is up to date with the remote master on git hub. If it is not, you can use "git pull" to update your local master.
 
 
-###### Assumed from here: you have a cloned github copy on your desktop, you have no unmerged branches, you want to add a new feature
+#### Assumed from here: you have a cloned github copy on your desktop, you have no unmerged branches, you want to add a new feature
   1.  In terminal, navigate to your local github repository
   2.  Use "git branch" to determine what branch you are in
   3.  Use "git checkout master" to navigate to your local master
@@ -78,7 +78,7 @@ Log into git hub and navigate to the branch you've just created to review your c
 
 Once the code is reviewed, your programming partner can merge the code to master, and all is done!
 
-###### Instructions when you were accidently working in your local master branch:
+#### Instructions when you were accidently working in your local master branch:
   1.  Run "git log" to see all commits
   2.  Find the most recent commit that is also on the remote master (git hub's master branch)
   3.  Copy the commit hash for that commit
