@@ -56,22 +56,23 @@ As long as you do not get any errors, you should be able to open up your browser
 
 
 Assumed from here: you have a cloned github copy on your desktop, you have no unmerged branches, you want to add a new feature
-- In terminal, navigate to your local github repository
-- use "git branch" to determine what branch you are in
-- use "git checkout master" to navigate to your local master
-- use "git status" to determine if you are in sync with the remote master on git hub
-- use "git pull" to pull in any changes and update your local master to match git hub (not needed if there are no changes)
-- use "git branch <name>" to create a new local branch based on your now updated local master
-- use "git checkout <name>" to switch to the new branch
-- Make any changes that you want to make localy
-- use "git status" to see changes
-- use "git diff" to review the differences line by line
-- use "git add <filename>" to designate the file you want to push to git hub
-- use "git add <filename>" again if you have another file to add (it will highlight all files added)
-    - Note: Erroneous files may appear here. Some are hidden files automatically created by your computer or system. You can add these to the gitignore file on     github and you won't have to see them again.
-- use "git commit -m "your message here" to commit the changes on your local branch, add a breif message on what the commit changes
-- use "git branch" one more time to ensure you are working in your local branch
-- use "git push" to push the local branch to github and create a new remote branch on git hub
+  1.  In terminal, navigate to your local github repository
+  2.  use "git branch" to determine what branch you are in
+  3.  use "git checkout master" to navigate to your local master
+  4.  use "git status" to determine if you are in sync with the remote master on git hub
+  5.  use "git pull" to pull in any changes and update your local master to match git hub (not needed if there are no changes)
+  6.  use "git branch <name>" to create a new local branch based on your now updated local master
+  7.  use "git checkout <name>" to switch to the new branch
+  8.  Make any changes that you want to make localy
+  9.  use "git status" to see changes
+  10. use "git diff" to review the differences line by line
+  11. use "git add <filename>" to designate the file you want to push to git hub
+  12. use "git add <filename>" again if you have another file to add (it will highlight all files added)
+      - Note: Erroneous files may appear here. Some are hidden files automatically created by your computer or system. You can add these to the gitignore file on     github and you won't have to see them again.
+  13. use "git commit -m "your message here" to commit the changes on your local branch, add a breif message on what the commit changes
+  14. use "git branch" one more time to ensure you are working in your local branch
+      - Warning: If you find that you accidently did your changes on your local master branch, DON'T push to master. You have a few options at this point. See "Working on master instructions".
+  15. use "git push" to push the local branch to github and create a new remote branch on git hub
 
 Log into git hub and navigate to the branch you've just created to review your changes. If you are satisfied, you can create a "pull request" and add your programing partner as the person you are requesting to review the code.
 
