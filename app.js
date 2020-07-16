@@ -42,7 +42,7 @@ Environment Configuration
 var config = require('./config')
 
 if (process.env.NODE_ENV == 'development') {
-    var DATABASE_CREDENTIALS = config.LOCAL_DATABSE_CREDENTIALS
+    var DATABASE_CREDENTIALS = config.LOCAL_DATABASE_CREDENTIALS
     process.env.PORT = 8080
 } else if (process.env.NODE_ENV == 'production') {
     var DATABASE_CREDENTIALS = process.env.CLEARDB_DATABASE_URL
