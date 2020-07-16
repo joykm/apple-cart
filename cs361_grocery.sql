@@ -48,7 +48,7 @@ VALUES
 
 CREATE TABLE sales(
 id INT AUTO_INCREMENT NOT NULL,
-date DATE NOT NULL,
+sale_date DATE NOT NULL,
 total_before_tax DECIMAL(13,2) NOT NULL,
 tax_amount DECIMAL(13,2) NOT NULL,
 total_after_tax DECIMAL(13,2) NOT NULL,
