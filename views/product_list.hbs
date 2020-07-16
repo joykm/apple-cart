@@ -1,0 +1,23 @@
+<h1 class="display-4 text-center">Product List</h1>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+        <th class="text-center" scope="col">Product Id:</th>
+        <th class="text-center" scope="col">Product Name:</th>
+        <th class="text-center" scope="col">Quantity on Shelf:</th>
+        <th class="text-center" scope="col">Minimum Shelf Threshold:</th>
+        <th class="text-center" scope="col">Shelf Capacity:</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each results}}
+        <tr>
+          <th class="text-center" scope="row">{{this.id}}</td>
+          <td class="text-center">{{this.name}}</td>
+          <td class="text-center text-danger">{{this.shelf_quantity}}</td>
+          <td class="text-center">{{this.shelf_min_threshold}}</td>
+          <td class="text-center">{{this.shelf_max_threshold}}</td>
+        </tr>
+    {{/each}}
+  <tbody>
+</table>
