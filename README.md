@@ -49,7 +49,7 @@ As long as you do not get any errors, you should be able to open up your browser
 
 ## Github Best Practices
 
-- Alwasys work in a local branch (NOT local master). 
+- Always work in a local branch (NOT local master). 
   - If you are unsure which branch you are in, type "git branch" and it will show you all branches, as well as highlight the one you are in.
 - "git branch" should be your favorite command and you should use it freqently to ensure you are not changing your local master.
 - Should should only have to clone the github repository one time in the beginning. For the remainder of the project, you can use "git status" to check if your local master is up to date with the remote master on git hub. If it is not, you can use "git pull" to update your local master.
@@ -78,7 +78,7 @@ Log into git hub and navigate to the branch you've just created to review your c
 
 Once the code is reviewed, your programming partner can merge the code to master, and all is done!
 
-#### Instructions when you were accidently working in your local master branch:
+#### Instructions when you were accidentally working in your local master branch:
   1.  Run "git log" to see all commits
   2.  Find the most recent commit that is also on the remote master (git hub's master branch)
   3.  Copy the commit hash for that commit
