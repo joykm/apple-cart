@@ -1,0 +1,29 @@
+<h1>Low on the self inventory flag</h1>
+<h3>Version 1.0.0</h3>
+<br>
+
+<h2 class="text-center">Low On The Shelf Inventory</h2>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+        <th class="text-center" scope="col">Product Id:</th>
+        <th class="text-center" scope="col">Product Name:</th>
+        <th class="text-center" scope="col">Quantity on Shelf:</th>
+        <th class="text-center" scope="col">Minimum Shelf Threshold:</th>
+        <th class="text-center" scope="col">Shelf Capacity:</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this}}
+      {{#if name}}
+        <tr>
+          <th class="text-center" scope="row">{{id}}</td>
+          <td class="text-center">{{name}}</td>
+          <td class="text-center text-danger">{{shelf_quantity}}</td>
+          <td class="text-center">{{shelf_min_threshold}}</td>
+          <td class="text-center">{{shelf_max_threshold}}</td>
+        </tr>
+      {{/if}}
+    {{/each}}
+  <tbody>
+</table>
