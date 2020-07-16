@@ -85,7 +85,8 @@ app.get('/', function(req, res) {
 app.get('/inventory', function(req, res) {
     connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold', function(error, results, fields){
         if (error) {
-          console.log("Error in loading buyer page.")
+          var data = "Error in querying the database."
+          res.render('inventory', {data:data})
         } 
         res.render('inventory', results)
     })
