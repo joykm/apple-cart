@@ -42,7 +42,7 @@ VALUES
 	('Quinn', 'Wilkins', 1),
 	('Ellen', 'Yang', 1),
 	('Kevin', 'Joy', 1),
-	('Blake', 'Lester', 1);2
+	('Blake', 'Lester', 1);
 
 -- Setup table structure for 'sales'
 

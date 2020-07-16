@@ -2,11 +2,12 @@
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
-        <th class="text-center" scope="col">Product Id:</th>
-        <th class="text-center" scope="col">Product Name:</th>
-        <th class="text-center" scope="col">Quantity on Shelf:</th>
-        <th class="text-center" scope="col">Minimum Shelf Threshold:</th>
-        <th class="text-center" scope="col">Shelf Capacity:</th>
+        <th class="text-center" scope="col">Id:</th>
+        <th class="text-center" scope="col">Name:</th>
+        <th class="text-center" scope="col">Type:</th>
+        <th class="text-center" scope="col">Price($):</th>
+        <th class="text-center" scope="col">Unit:</th>
+        <th class="text-center" scope='col'>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -14,9 +15,10 @@
         <tr>
           <th class="text-center" scope="row">{{this.id}}</td>
           <td class="text-center">{{this.name}}</td>
-          <td class="text-center text-danger">{{this.shelf_quantity}}</td>
-          <td class="text-center">{{this.shelf_min_threshold}}</td>
-          <td class="text-center">{{this.shelf_max_threshold}}</td>
+          <td class="text-center text-danger">{{this.type}}</td>
+          <td class="text-center">{{this.price}}</td>
+          <td class="text-center">{{this.unit}}</td>
+          <td class="text-center">{{this.description}}</td>
         </tr>
     {{/each}}
   <tbody>
