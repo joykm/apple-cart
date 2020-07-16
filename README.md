@@ -50,7 +50,7 @@ As long as you do not get any errors, you should be able to open up your browser
 ## Github Best Practices
 
 - Always work in a local branch (NOT local master). 
-  - If you are unsure which branch you are in, type "git branch" and it will show you all branches, as well as highlight the one you are in.
+- If you are unsure which branch you are in, type "git branch" and it will show you all branches, as well as highlight the one you are in.
 - "git branch" should be your favorite command and you should use it freqently to ensure you are not changing your local master.
 - Should should only have to clone the github repository one time in the beginning. For the remainder of the project, you can use "git status" to check if your local master is up to date with the remote master on git hub. If it is not, you can use "git pull" to update your local master.
 
@@ -88,5 +88,4 @@ Once the code is reviewed, your programming partner can merge the code to master
   7.  Use "git status" again to verify that your changes are still there, but now they are unstaged (they will be red).
   8.  Use "git branch <name>" to create a new branch with your current changes
 	9.  Use "git checkout <branch>" to switch to that branch
-  10. Now you can add, commit, and push to your new branch as normal.
-
+  10. Now you can add, commit, and push to your new branch as normal

@@ -1,9 +1,8 @@
 /node_modules
-
+config.js
+/old
 
 # Google Drive adds Icon files to folders
 Icon?
-
 .DS_Store
 views/.DS_Store
-

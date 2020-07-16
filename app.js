@@ -24,8 +24,6 @@ const app = express()
 Configure Express Server
 */
 
-app.set('port', process.env.PORT || 8080)
-
 app.engine('hbs', exphbs(
     {
         defaultLayout: 'main',
@@ -39,10 +37,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
 /*
+Environment Configuration
+*/
+var config = require('./config')
+
+if (process.env.NODE_ENV == 'development') {
+    var DATABASE_CREDENTIALS = config.LOCAL_DATABSE_CREDENTIALS
+    process.env.PORT = 8080
+} else if (process.env.NODE_ENV == 'production') {
+    var DATABASE_CREDENTIALS = process.env.CLEARDB_DATABASE_URL
+}
+/*
 Database Setup and Configuration
 */
 
-const connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL)
+const connection = mysql.createConnection(DATABASE_CREDENTIALS)
 handleDisconnect(connection)
 
 /*
@@ -63,6 +72,7 @@ Routing Constants
 Routing
 */
 
+// Home/Main/Dashboard Route
 app.get('/', function(req, res) {
 
     // Simple query to make sure the database is connected.
@@ -82,6 +92,11 @@ app.get('/', function(req, res) {
 })
 
 
+// Product List Route
+app.get('/product_list', function(req, res) {
+    res.render('product_list')
+})
+
 app.get('/inventory', function(req, res) {
     connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold', function(error, results, fields){
         if (error) {
@@ -91,12 +106,11 @@ app.get('/inventory', function(req, res) {
     })
   })
 
-
 /*
 Listener
 */
 
-app.listen(app.get('port'))
+app.listen(process.env.PORT)
 
 /*
 Error Handling
