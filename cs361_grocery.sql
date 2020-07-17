@@ -60,7 +60,7 @@ FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL ON UPDATE CASCADE
 
 -- Dumping in some starter sample data for 'sales'
 
-INSERT INTO sales(date, total_before_tax, tax_amount, total_after_tax, user_id) 
+INSERT INTO sales(sale_date, total_before_tax, tax_amount, total_after_tax, user_id) 
 VALUES 
 	('2020-06-23', 24.50, 5.00, 29.50, 1), 
 	('2020-06-25', 12.00, 2.35, 14.35, 1),
@@ -90,9 +90,9 @@ PRIMARY KEY (id)
 
 INSERT INTO products(name, price, shelf_quantity, wh_quantiy, description) 
 VALUES 
-	('apple', 2.00, 17, 30, 'An apple is an edible fruit prouduced by an apple tree'), 
+	('apple', 2.00,17, 30, 'An apple is an edible fruit prouduced by an apple tree'), 
 	('banana', 1.25, 40, 23, 'A banana is a curved, yellow fruit with a thick skin and soft sweet flesh'),
-	('pear', 3.50, 8, 15,'A pear is an edible fruit with the shape of teardrop');
+	('pear', 3.50,8, 15,'A pear is an edible fruit with the shape of teardrop');
 
 
 -- Setup table structure for 'sales_products'
