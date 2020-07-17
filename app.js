@@ -39,11 +39,12 @@ app.use(express.urlencoded({ extended: false}))
 /*
 Environment Configuration
 */
-var config = require('./config')
-if (config) {
+
+try {
+    var config = require('./config')
     var DATABASE_CREDENTIALS = config.LOCAL_DATABASE_CREDENTIALS
     process.env.PORT = 8080
-} else if (process.env.NODE_ENV == 'production') {
+} catch(err) {
     var DATABASE_CREDENTIALS = process.env.CLEARDB_DATABASE_URL
 }
 /*
