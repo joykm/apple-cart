@@ -76,14 +76,16 @@ app.get('/', function(req, res) {
     
 })
 
-// Product List Route
-app.get('/product_list', function(req, res) {
+/* Product Catalog Route
+   User will be able to view the content of proudct catalog
+*/
+app.get('/product_catalog', function(req, res) {
     /*Select Id, name, type, price, unit, description from products*/
     connection.query('SELECT id, name, type, price, unit, description FROM products', function(error, results, fields){
         if (error) {
             console.log("Error loading inventory page: " + error)
         }
-        res.render('product_list', {results: results})
+        res.render('product_catalog', {results: results})
     })
 })
 
