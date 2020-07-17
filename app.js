@@ -83,7 +83,7 @@ app.get('/product_catalog', function(req, res) {
     /*Select Id, name, type, price, unit, description from products*/
     connection.query('SELECT id, name, type, price, unit, description FROM products', function(error, results, fields){
         if (error) {
-            console.log("Error loading inventory page: " + error)
+            console.log("Error loading product_catalog: " + error)
         }
         res.render('product_catalog', {results: results})
     })
