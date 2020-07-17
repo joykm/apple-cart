@@ -91,7 +91,7 @@ app.get('/product_catalog', function(req, res) {
 
 // Inventory Route
 app.get('/inventory', function(req, res) {
-    connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold`', function(error, results, fields){
+    connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold', function(error, results, fields){
         if (error) {
           var data = "Error in querying the database."
           res.render('inventory', {data:data})
