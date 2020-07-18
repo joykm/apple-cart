@@ -1,3 +1,4 @@
+{{!-- Navbar --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Apple Cart</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,34 +12,103 @@
         </div>
     </div>
 </nav>
-<br>
 
-<h1>The Apple Cart</h1>
-<h3>Version 1.0.1</h3>
-<br>
+{{!-- Content --}}
+<div class="mt-4 container-fluid">
 
-<h1 class="display-4 text-center">Low On The Shelf Inventory</h1>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-        <th class="text-center" scope="col">Product Id:</th>
-        <th class="text-center" scope="col">Product Name:</th>
-        <th class="text-center" scope="col">Quantity on Shelf:</th>
-        <th class="text-center" scope="col">Minimum Shelf Threshold:</th>
-        <th class="text-center" scope="col">Shelf Capacity:</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each this}}
-      {{#if name}}
+  {{!-- Header/Title --}}
+  <div class="row">
+    <div class="col">
+        <h1 class="display-4 text-left">Inventory</h1>
+        <p class="text-left">Low Shelf Inventory appears in<span class="text-danger"> red</span>.</p>
+    </div>
+  </div>
+
+  {{!-- Add Item Dialogue --}}
+  <div class="row">
+    <div class="col">
+      <h3 class="text-center">Add Item</h3>
+      <form action="/inventory/new_item" method="post">
+        <div class="form-row">
+
+          <div class="col">          
+            <label for="product_name_input">Product Name</label>
+            <select class="form-control" id="product_name_input" name="product_name_input">
+              {{#each this}}
+                {{#if name}}
+                  <option>{{name}}</option>
+                {{/if}}
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
+            <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0">
+          </div>
+
+          <div class="col">
+            <label for="product_shelf_inventory_input">Shelf Inventory</label>
+            <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0">
+          </div>
+
+          <div class="col">
+            <label for="product_expiration_date_input">Expiration Date</label>
+            <input type="date" class="form-control" id="product_expiration_date_input" name="product_expiration_date_input" required>
+          </div>
+
+
+          <div class="col">
+            <label>&nbsp;</label>
+            <div class="form-row">
+              <div class="col"><button type="submit" class="btn btn-primary " id="product_add_item_submit">Add Item</button></div>
+            </div>
+          </div>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {{!-- Table --}}
+  <div class="row mt-5">
+    <table class="table table-hover">
+      <thead class="thead-dark">
         <tr>
-          <th class="text-center" scope="row">{{id}}</td>
-          <td class="text-center">{{name}}</td>
-          <td class="text-center text-danger">{{shelf_quantity}}</td>
-          <td class="text-center">{{shelf_min_threshold}}</td>
-          <td class="text-center">{{shelf_max_threshold}}</td>
+            <th class="text-center" scope="col" colspan="4">Product</th>
+            <th class="text-center bg-secondary" scope="col" colspan="4">Inventory</th>
         </tr>
-      {{/if}}
-    {{/each}}
-  <tbody>
-</table>
+        <tr>
+            <th class="text-center" scope="col">ID</th>
+            <th class="text-center" scope="col">Name</th>
+            <th class="text-center" scope="col">Quantity</th>
+            <th class="text-center" scope="col">Expiration Date</th>
+            <th class="text-center bg-secondary" scope="col">Warehouse</th>
+            <th class="text-center bg-secondary" scope="col">Shelf</th>
+            <th class="text-center bg-secondary" scope="col">Minimum Shelf Threshold</th>
+            <th class="text-center bg-secondary" scope="col">Shelf Capacity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this}}
+          {{#if name}}
+            <tr>
+              <td class="text-center">{{id}}</td>
+              <td class="text-center">{{name}}</td>
+              <td class="text-center">{{total_quantity}}</td>
+              <td class="text-center">{{exp_date}}</td>
+              <td class="text-center">{{wh_quantity}}</td>
+              {{#if shelf_low}}
+              <td class="text-center text-white bg-danger">{{shelf_quantity}}</td>
+              {{else}}
+              <td class="text-center">{{shelf_quantity}}</td>
+              {{/if}}
+              <td class="text-center">{{shelf_min_threshold}}</td>
+              <td class="text-center">{{shelf_max_threshold}}</td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      <tbody>
+    </table>
+  </div>
+</div>

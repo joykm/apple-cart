@@ -1,3 +1,4 @@
+{{!-- Navbar --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Apple Cart</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,34 +12,36 @@
         </div>
     </div>
 </nav>
-<br>
 
-<h1>The Apple Cart</h1>
-<h3>Version 1.0.1</h3>
-<br>
-
-<h1 class="display-4 text-center">Product Catalog</h1>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-        <th class="text-center" scope="col">Id:</th>
-        <th class="text-center" scope="col">Name:</th>
-        <th class="text-center" scope="col">Type:</th>
-        <th class="text-center" scope="col">Price($):</th>
-        <th class="text-center" scope="col">Unit:</th>
-        <th class="text-center" scope='col'>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each results}}
-        <tr>
-          <th class="text-center" scope="row">{{this.id}}</th>
-          <td class="text-center">{{this.name}}</td>
-          <td class="text-center">{{this.type}}</td>
-          <td class="text-center">{{this.price}}</td>
-          <td class="text-center">{{this.unit}}</td>
-          <td class="text-center">{{this.description}}</td>
-        </tr>
-    {{/each}}
-  <tbody>
-</table>
+{{!-- Table --}}
+<div class="mt-4 container-fluid">
+  <div class="row">
+    <h1 class="display-4 text-center">Product Catalog</h1>
+  </div>
+  <div class="row">
+      <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+          <th class="text-center" scope="col">Id:</th>
+          <th class="text-center" scope="col">Name:</th>
+          <th class="text-center" scope="col">Type:</th>
+          <th class="text-center" scope="col">Price($):</th>
+          <th class="text-center" scope="col">Unit:</th>
+          <th class="text-center" scope='col'>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each results}}
+          <tr>
+            <th class="text-center" scope="row">{{this.id}}</th>
+            <td class="text-center">{{this.name}}</td>
+            <td class="text-center">{{this.type}}</td>
+            <td class="text-center">{{this.price}}</td>
+            <td class="text-center">{{this.unit}}</td>
+            <td class="text-center">{{this.description}}</td>
+          </tr>
+      {{/each}}
+    <tbody>
+  </table>
+  </div>
+</div>
