@@ -91,15 +91,58 @@ app.get('/product_catalog', function(req, res) {
 
 // Inventory Route
 app.get('/inventory', function(req, res) {
-    connection.query('SELECT * FROM `products` WHERE shelf_quantity <= shelf_min_threshold', function(error, results, fields){
+    
+    // Change this to change the query going to the DB
+    var inventory_query_string = "SELECT id, name, shelf_quantity, DATE_FORMAT(exp_date,'%m-%d-%Y') AS exp_date, wh_quantity, " +
+    "shelf_quantity + wh_quantity AS total_quantity, " +
+    "shelf_min_threshold, shelf_max_threshold FROM products"
+
+    // Requesting the data from the database
+    connection.query(inventory_query_string, function(error, results, fields){
         if (error) {
           var data = "Error in querying the database."
           res.render('inventory', {data:data})
-        } 
+        }
+
+        // Check for items that are low on the shelf and set .shelf_low to true if they are
+        results.forEach(function(value, index) {
+            if (value.shelf_quantity < value.shelf_min_threshold) {
+                value.shelf_low = true
+            } else {
+                value.shelf_low = false
+            }
+        })
+
+        // Send the data to the inventory template
         res.render('inventory', results)
     })
   })
 
+// Inventory - New Item Route
+app.post('/inventory/new_item', function(req, res) {
+
+    // Grab the necessary data from the POST request body
+    var product_name = req.body.product_name_input;
+    var wh_inventory = req.body.product_warehouse_inventory_input;
+    var shelf_inventory = req.body.product_shelf_inventory_input;
+    var expiration_date = req.body.product_expiration_date_input;
+
+    // Form the SQL Query needed to updated the product inventory
+    var add_inventory_query_string = "UPDATE products SET " +
+    "exp_date = '" + expiration_date + "', " + 
+    "shelf_quantity = shelf_quantity + " + shelf_inventory + ", " +
+    "wh_quantity = wh_quantity + " + wh_inventory + " " + 
+    "WHERE name = '" + product_name + "'"
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(add_inventory_query_string, function(error, results, fields){
+        if (error) {
+            console.log("Add item inventory failed...")
+        } else {
+            res.redirect('/inventory')
+        }
+    })
+})
 /*
 Listener
 */
