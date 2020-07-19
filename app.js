@@ -127,7 +127,7 @@ app.post('/inventory/new_item', function(req, res) {
     var shelf_inventory = req.body.product_shelf_inventory_input;
     var expiration_date = req.body.product_expiration_date_input;
 
-    // Form the SQL Query needed to updated the product inventory
+    // Form the SQL Query needed to update the product inventory
     var add_inventory_query_string = "UPDATE products SET " +
     "exp_date = '" + expiration_date + "', " + 
     "shelf_quantity = shelf_quantity + " + shelf_inventory + ", " +
@@ -143,6 +143,31 @@ app.post('/inventory/new_item', function(req, res) {
         }
     })
 })
+
+// Inventory - Remove Item Route
+app.post('/inventory/remove_item', function (req, res) {
+
+    // Grab the necessary data from the POST request body
+    var product_name = req.body.product_name_input;
+    var wh_inventory = req.body.product_warehouse_inventory_input;
+    var shelf_inventory = req.body.product_shelf_inventory_input;
+
+    // Form the SQL Query needed to update the product inventory
+    var rem_inventory_query_string = "UPDATE products SET " +
+        "shelf_quantity = shelf_quantity - " + shelf_inventory + ", " +
+        "wh_quantity = wh_quantity - " + wh_inventory + " " +
+        "WHERE name = '" + product_name + "'"
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(rem_inventory_query_string, function (error, results, fields) {
+        if (error) {
+            console.log("Remove item inventory failed...")
+        } else {
+            res.redirect('/inventory')
+        }
+    })
+})
+
 /*
 Listener
 */
