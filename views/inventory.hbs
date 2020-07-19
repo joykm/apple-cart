@@ -24,50 +24,86 @@
     </div>
   </div>
 
-  {{!-- Add Item Dialogue --}}
+  {{!-- Inventory Management Dialogue --}}
   <div class="row">
-    <div class="col">
-      <h3 class="text-center">Add Item</h3>
-      <form action="/inventory/new_item" method="post">
-        <div class="form-row">
+      <div class="col">
+          <h3 class="text-center">Inventory Management</h3>
+          {{!-- Add Item Form --}}
+          <form action="/inventory/new_item" method="post">
+              <div class="form-row">
 
-          <div class="col">          
-            <label for="product_name_input">Product Name</label>
-            <select class="form-control" id="product_name_input" name="product_name_input">
-              {{#each this}}
-                {{#if name}}
-                  <option>{{name}}</option>
-                {{/if}}
-              {{/each}}
-            </select>
-          </div>
+                  <div class="col">
+                      <label for="product_name_input">Product Name</label>
+                      <select class="form-control" id="product_name_input" name="product_name_input">
+                          {{#each this}}
+                          {{#if name}}
+                          <option>{{name}}</option>
+                          {{/if}}
+                          {{/each}}
+                      </select>
+                  </div>
 
-          <div class="col">
-            <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
-            <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0" required>
-          </div>
+                  <div class="col">
+                      <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
+                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0" required>
+                  </div>
 
-          <div class="col">
-            <label for="product_shelf_inventory_input">Shelf Inventory</label>
-            <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0" required>
-          </div>
+                  <div class="col">
+                      <label for="product_shelf_inventory_input">Shelf Inventory</label>
+                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0" required>
+                  </div>
 
-          <div class="col">
-            <label for="product_expiration_date_input">Expiration Date</label>
-            <input type="date" class="form-control" id="product_expiration_date_input" name="product_expiration_date_input" required>
-          </div>
+                  <div class="col">
+                      <label for="product_expiration_date_input">Expiration Date</label>
+                      <input type="date" class="form-control" id="product_expiration_date_input" name="product_expiration_date_input" required>
+                  </div>
 
 
-          <div class="col">
-            <label>&nbsp;</label>
-            <div class="form-row">
-              <div class="col"><button type="submit" class="btn btn-primary " id="product_add_item_submit">Add Item</button></div>
-            </div>
-          </div>
-          
-        </div>
-      </form>
-    </div>
+                  <div class="col">
+                      <label>&nbsp;</label>
+                      <div class="form-row">
+                          <div class="col"><button type="submit" class="btn btn-primary " id="product_add_item_submit">Add Item</button></div>
+                      </div>
+                  </div>
+
+              </div>
+          </form>
+
+          {{!-- Remove Item Form}}
+          <form action="/inventory/remove_item" method="post">
+              <div class="form-row">
+
+                  <div class="col">
+                      <label for="product_name_input">Product Name</label>
+                      <select class="form-control" id="product_name_input" name="product_name_input">
+                          {{#each this}}
+                          {{#if name}}
+                          <option>{{name}}</option>
+                          {{/if}}
+                          {{/each}}
+                      </select>
+                  </div>
+
+                  <div class="col">
+                      <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
+                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0" required>
+                  </div>
+
+                  <div class="col">
+                      <label for="product_shelf_inventory_input">Shelf Inventory</label>
+                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0" required>
+                  </div>
+
+                  <div class="col">
+                      <label>&nbsp;</label>
+                      <div class="form-row">
+                          <div class="col"><button type="submit" class="btn btn-primary " id="product_rem_item_submit">Remove Item</button></div>
+                      </div>
+                  </div>
+
+              </div>
+          </form>
+      </div>
   </div>
 
   {{!-- Table --}}
