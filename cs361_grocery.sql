@@ -79,7 +79,7 @@ description VARCHAR(255),
 shelf_quantity INT NOT NULL,
 shelf_min_threshold INT,
 shelf_max_threshold INT,
-wh_quantiy INT NOT NULL,
+wh_quantity INT NOT NULL,
 wh_min_threshold INT,
 wh_max_threshold INT,
 PRIMARY KEY (id)

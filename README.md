@@ -1,6 +1,6 @@
 # CS361-Group Project
 
-A store inventory management system, built in [stack details here].
+A store inventory management system, built for the web.
 
 ### Architecture
 ![Monolith](./documentation/apple_cart_monolith.png)
