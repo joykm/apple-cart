@@ -2,7 +2,7 @@
 app.js
 
 Created On: 7/12/2020
-Last Updated On: 7/16/2020
+Last Updated On: 7/19/2020
 Description: Entry point for "The Apple Cart" web app, Store Inventory Management System
 */
 
