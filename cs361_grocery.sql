@@ -1,7 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS roles, users, sales, products, sales_products;
 SET FOREIGN_KEY_CHECKS = 1;
-SET @@GLOBAL.sql_mode = 'STRICT_TRANS_TABLES';
 
 
 -- Setup table structure for 'roles'
