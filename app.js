@@ -81,12 +81,12 @@ app.get('/', function(req, res) {
 
 /* 
 Product Catalog Route
-User will be able to view the content of proudct catalog
+User will be able to view the active products in the proudct catalog
 */
 app.get('/product_catalog', function(req, res) {
 
     // Change this to change the query going to the DB
-    var productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products'
+    var productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products WHERE active is TRUE'
 
     // Requesting the data from the database
     connection.query(productCatalogQueryString, function(error, results, fields){
@@ -104,7 +104,7 @@ app.get('/inventory', function(req, res) {
     var inventoryQueryString =    
         `SELECT id, name, shelf_quantity, DATE_FORMAT(exp_date,'%m-%d-%Y') AS exp_date, 
         wh_quantity, shelf_quantity + wh_quantity AS total_quantity,
-        shelf_min_threshold, shelf_max_threshold FROM products;`
+        shelf_min_threshold, shelf_max_threshold, active FROM products;`
 
     // Requesting the data from the database
     connection.query(inventoryQueryString, function(error, results, fields){
@@ -115,9 +115,19 @@ app.get('/inventory', function(req, res) {
         }
 
         console.log(results)
-        // Check for items that are low on the shelf and set .shelf_low to true if they are
+
+        // Check for not active item
         results.forEach(function(value, index) {
-            if (value.shelf_quantity < value.shelf_min_threshold) {
+            if (value.active != 0) {
+                value.not_catalog = false
+            } else {
+                value.not_catalog = true
+            }
+        })
+
+        // Check for "Active" items that are low on the shelf and set .shelf_low to true if they are
+        results.forEach(function(value, index) {
+            if (value.shelf_quantity < value.shelf_min_threshold && value.active != 0) {
                 value.shelf_low = true
             } else {
                 value.shelf_low = false

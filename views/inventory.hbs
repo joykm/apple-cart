@@ -21,6 +21,7 @@
     <div class="col">
         <h1 class="display-4 text-left">Inventory</h1>
         <p class="text-left">Low Shelf Inventory appears in<span class="text-danger"> red</span>.</p>
+        <p class="text-left">Inactive items appears in<span class="text-secondary"> gray</span>.</p>
     </div>
   </div>
 
@@ -36,7 +37,7 @@
                       <label for="product_name_input">Product Name</label>
                       <select class="form-control" id="product_name_input" name="product_name_input">
                           {{#each this}}
-                          {{#if name}}
+                          {{#if active}}
                           <option>{{name}}</option>
                           {{/if}}
                           {{/each}}
@@ -128,6 +129,18 @@
       <tbody>
         {{#each this}}
           {{#if name}}
+            {{#if not_catalog}}
+            <tr>
+              <td class="text-center bg-secondary">{{id}}</td>
+              <td class="text-center bg-secondary">{{name}}</td>
+              <td class="text-center bg-secondary">{{total_quantity}}</td>
+              <td class="text-center bg-secondary">{{exp_date}}</td>
+              <td class="text-center bg-secondary">{{wh_quantity}}</td>
+              <td class="text-center bg-secondary">{{shelf_quantity}}</td>
+              <td class="text-center bg-secondary">{{shelf_min_threshold}}</td>
+              <td class="text-center bg-secondary">{{shelf_max_threshold}}</td>
+            </tr>
+            {{else}}
             <tr>
               <td class="text-center">{{id}}</td>
               <td class="text-center">{{name}}</td>
@@ -142,6 +155,7 @@
               <td class="text-center">{{shelf_min_threshold}}</td>
               <td class="text-center">{{shelf_max_threshold}}</td>
             </tr>
+            {{/if}}
           {{/if}}
         {{/each}}
       <tbody>
