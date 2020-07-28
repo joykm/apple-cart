@@ -59,6 +59,31 @@
 
         </div>
       </form>
+
+      {{!-- Remove Product Form --}}
+          <form action="/product_catalog/remove_product" method="post">
+              <div class="form-row">
+
+                  <div class="col">
+                      <label for="product_name_input">Product Name</label>
+                      <select class="form-control" id="product_name_input" name="product_name_input">
+                          {{#each this}}
+                          {{#if active}}
+                          <option>{{name}}</option>
+                          {{/if}}
+                          {{/each}}
+                      </select>
+                  </div>
+
+                  <div class="col">
+                      <label>&nbsp;</label>
+                      <div class="form-row">
+                          <div class="col"><button type="submit" class="btn btn-primary " id="product_rem_item_submit">Remove Item</button></div>
+                      </div>
+                  </div>
+
+              </div>
+          </form>
     </div>
   </div>
 
