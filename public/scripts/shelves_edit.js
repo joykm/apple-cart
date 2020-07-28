@@ -4,7 +4,7 @@ Author: George Kochera
 Description: Enables the ability to click on a row in the inventory page and edit the shelves capacity.
 */
 
-// Find all the items on the page.
+// Find all the product rows on the page.
 var shelf_row = document.getElementsByClassName('gt_product')
 
 // Add event listeners to all the rows so when we click on them, they open a modal.
@@ -31,3 +31,5 @@ for (var row of shelf_row) {
         })
     }(row))
 }
+
+// TODO: Data Validation
