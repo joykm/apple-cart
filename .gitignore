@@ -2,6 +2,7 @@
 config.js
 /old
 backup.sql
+.vs
 
 
 # Google Drive adds Icon files to folders
