@@ -126,6 +126,25 @@ app.post('/product_catalog/new_product', function(req, res) {
     })
 })
 
+// Products - Remove product Route
+app.post('/product_catalog/remove_product', function (req, res) {
+
+    // Grab the necessary data from the POST request body
+    const product_name = req.body.product_name_input;
+    
+    // Form the SQL Query needed to update the product catalog
+    const rem_product_query_string = `UPDATE products SET active = 0 WHERE name = '${product_name}'` 
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(rem_product_query_string, function (error, results, fields) {
+        if (error) {
+            console.log("Remove product from catalog failed...")
+        } else {
+            res.redirect('/product_catalog')
+        }
+    })
+})
+
 
 // Inventory Route
 app.get('/inventory', function(req, res) {
