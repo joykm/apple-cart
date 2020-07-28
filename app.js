@@ -124,10 +124,6 @@ app.post('/product_catalog/new_product', function(req, res) {
         } else {
             res.redirect('/product_catalog')
         }
-<<<<<<< HEAD
-        res.render('product_catalog', {results: results, product_catalog: 1})
-=======
->>>>>>> 36ef935c328e40dd2b4d252a003effef7afb3bac
     })
 })
 
