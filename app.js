@@ -54,6 +54,12 @@ Database Setup and Configuration
 
 const connection = mysql.createPool(DATABASE_CREDENTIALS)
 
+
+/*
+Custom Handlebars Helper for Navbar
+*/
+
+
 /*
 Routing
 */
@@ -73,7 +79,7 @@ app.get('/', function(req, res) {
         results.forEach(element => {
             data += element.first_name + ' '
         });
-        res.render('home', {data: data})    
+        res.render('home', {data: data, dashboard: 1})    
     }
     })
     
@@ -93,7 +99,7 @@ app.get('/product_catalog', function(req, res) {
         if (error) {
             console.log('Error loading product_catalog: ' + error)
         }
-        res.render('product_catalog', {results: results})
+        res.render('product_catalog', {results: results, product_catalog: 1})
     })
 })
 
@@ -114,7 +120,7 @@ app.get('/inventory', function(req, res) {
           res.render('inventory', {data:data})
         }
 
-        console.log(results)
+        // console.log({results: results, inventory: 1})
 
         // Check for not active item
         results.forEach(function(value, index) {
@@ -144,7 +150,7 @@ app.get('/inventory', function(req, res) {
         })
 
         // Send the data to the inventory template
-        res.render('inventory', results)
+        res.render('inventory', {results: results, inventory: 1})
     })
   })
 
