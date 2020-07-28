@@ -92,10 +92,11 @@ app.get('/product_catalog', function(req, res) {
     connection.query(productCatalogQueryString, function(error, results, fields){
         if (error) {
             console.log('Error loading product_catalog: ' + error)
+            res.send('Error loading product_catalog: ' + error)
+        } else {
+            console.log(results)
+            res.render('product_catalog', {sqlResults: results})
         }
-        console.log(results)
-
-        res.render('product_catalog', results)
     })
 })
 
@@ -118,8 +119,8 @@ app.post('/product_catalog/new_product', function(req, res) {
     // Send the query, if it fails, log to console, if it succeeds, update the screen.
     connection.query(addProductQueryString, function(error, results, fields){
         if (error) {
-            console.log('Add product to catalog failed...')
-            console.log(error)
+            console.log('Error adding product to catalog: ' + error)
+            res.send('Error adding product to catalog: ' + error)
         } else {
             res.redirect('/product_catalog')
         }
@@ -138,7 +139,8 @@ app.post('/product_catalog/remove_product', function (req, res) {
     // Send the query, if it fails, log to console, if it succeeds, update the screen.
     connection.query(rem_product_query_string, function (error, results, fields) {
         if (error) {
-            console.log("Remove product from catalog failed...")
+            console.log('Error removing product from catalog: ' + error)
+            res.send('Error removing product from catalog: ' + error)
         } else {
             res.redirect('/product_catalog')
         }
