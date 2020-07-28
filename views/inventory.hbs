@@ -132,7 +132,7 @@
         {{#each this}}
           {{#if name}}
             {{#if not_catalog}}
-            <tr>
+            <tr class="gt_product">
               <td class="text-center bg-secondary">{{id}}</td>
               <td class="text-center bg-secondary">{{name}}</td>
               <td class="text-center bg-secondary">{{total_quantity}}</td>
@@ -141,11 +141,11 @@
               <td class="text-center bg-secondary">{{wh_min_threshold}}</td>
               <td class="text-center bg-secondary">{{wh_max_threshold}}</td>
               <td class="text-center bg-secondary">{{shelf_quantity}}</td>
-              <td class="text-center bg-secondary">{{shelf_min_threshold}}</td>
-              <td class="text-center bg-secondary">{{shelf_max_threshold}}</td>
+              <td class="text-center bg-secondary gt_shelf_min_threshold">{{shelf_min_threshold}}</td>
+              <td class="text-center bg-secondary gt_shelf_max_threshold">{{shelf_max_threshold}}</td>
             </tr>
             {{else}}
-            <tr>
+            <tr class="gt_product">
               <td class="text-center">{{id}}</td>
               <td class="text-center">{{name}}</td>
               <td class="text-center">{{total_quantity}}</td>
@@ -162,8 +162,8 @@
               {{else}}
               <td class="text-center">{{shelf_quantity}}</td>
               {{/if}}
-              <td class="text-center">{{shelf_min_threshold}}</td>
-              <td class="text-center">{{shelf_max_threshold}}</td>
+              <td class="text-center gt_shelf_min_threshold">{{shelf_min_threshold}}</td>
+              <td class="text-center gt_shelf_max_threshold">{{shelf_max_threshold}}</td>
             </tr>
             {{/if}}
           {{/if}}
