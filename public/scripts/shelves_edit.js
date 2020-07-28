@@ -33,3 +33,40 @@ for (var row of shelf_row) {
 }
 
 // TODO: Data Validation
+// (function() {
+//     window.addEventListener('load', function() {
+//         var forms = document.getElementsByClassName('needs-validation')
+
+//         var validation = Array.prototype.filter.call(forms, function(form) {
+//             form.addEventListener('submit', function(event) {
+//                 var modal_input_min = document.querySelector('#modal_shelf_minimum_threshold').value
+//                 var modal_input_max = document.querySelector('#modal_shelf_maximum_threshold').value
+//                 if (modal_input_max < modal_input_min || modal_input_min > modal_input_max) {
+//                     event.preventDefault();
+//                     event.stopPropagation();
+//                 }
+//                 form.classList.add('was-validated')
+//             }, false);
+//         });
+//     }, false)
+// })()
+
+var form = document.getElementsByClassName('needs-validation')[0]
+var input_min = document.querySelector('#modal_shelf_minimum_threshold').value
+var input_max = document.querySelector('#modal_shelf_maximum_threshold').value
+
+form.addEventListener('submit', function(event) {
+        if (form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated')
+})
+
+function form_shelves_check_min() {
+    if (input_min.value > input_max.value) {
+        return false
+    } else {
+        return true
+    }
+}
