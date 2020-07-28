@@ -86,16 +86,55 @@ User will be able to view the active products in the proudct catalog
 app.get('/product_catalog', function(req, res) {
 
     // Change this to change the query going to the DB
-    var productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products WHERE active is TRUE'
+    const productCatalogQueryString = 'SELECT id, name, type, price, unit, description, active FROM products WHERE active is TRUE'
 
     // Requesting the data from the database
     connection.query(productCatalogQueryString, function(error, results, fields){
         if (error) {
             console.log('Error loading product_catalog: ' + error)
         }
-        res.render('product_catalog', {results: results})
+        console.log(results)
+
+        // Check for not active item
+        results.forEach(function(value, index) {
+            if (value.active != 0) {
+                value.not_catalog = false
+            } else {
+                value.not_catalog = true
+            }
+        })
+
+        res.render('product_catalog', results)
     })
 })
+
+// Products - New Product Route
+app.post('/product_catalog/new_product', function(req, res) {
+
+    // Grab the necessary data from the POST request body
+    const name = req.body.name_input;
+    const type = req.body.type_input;
+    const price = req.body.price_input;
+    const unit = req.body.unit_input;
+    const description = req.body.description_input;
+
+    // Change this to change the query going to the DB
+    const addProductQueryString =
+        `INSERT INTO products (name, type, price, unit, description) VALUES
+        ('${name}', '${type}', '${price}', '${unit}', '${description}')
+        `
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(addProductQueryString, function(error, results, fields){
+        if (error) {
+            console.log('Add product to catalog failed...')
+            console.log(error)
+        } else {
+            res.redirect('/product_catalog')
+        }
+    })
+})
+
 
 // Inventory Route
 app.get('/inventory', function(req, res) {
