@@ -86,7 +86,7 @@ User will be able to view the active products in the proudct catalog
 app.get('/product_catalog', function(req, res) {
 
     // Change this to change the query going to the DB
-    const productCatalogQueryString = 'SELECT id, name, type, price, unit, description, active FROM products WHERE active is TRUE'
+    const productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products WHERE active is TRUE'
 
     // Requesting the data from the database
     connection.query(productCatalogQueryString, function(error, results, fields){
@@ -94,15 +94,6 @@ app.get('/product_catalog', function(req, res) {
             console.log('Error loading product_catalog: ' + error)
         }
         console.log(results)
-
-        // Check for not active item
-        results.forEach(function(value, index) {
-            if (value.active != 0) {
-                value.not_catalog = false
-            } else {
-                value.not_catalog = true
-            }
-        })
 
         res.render('product_catalog', results)
     })
