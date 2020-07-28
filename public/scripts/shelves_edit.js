@@ -1,7 +1,8 @@
 /*
 shelves_edit.js
 Author: George Kochera
-Description: Enables the ability to click on a row in the inventory page and edit the shelves capacity.
+Description: Enables the ability to click on a row in the inventory page and edit the shelves capacity. Data validation
+is enforced in the modal. The only rule is that the maximum must be greater than or equal to the minimum value.
 */
 
 // Find all the product rows on the page.
@@ -32,31 +33,8 @@ for (var row of shelf_row) {
     }(row))
 }
 
-// TODO: Data Validation
-// (function() {
-//     window.addEventListener('load', function() {
-//         var forms = document.getElementsByClassName('needs-validation')
-
-//         var validation = Array.prototype.filter.call(forms, function(form) {
-//             form.addEventListener('submit', function(event) {
-//                 var modal_input_min = document.querySelector('#modal_shelf_minimum_threshold').value
-//                 var modal_input_max = document.querySelector('#modal_shelf_maximum_threshold').value
-//                 if (modal_input_max < modal_input_min || modal_input_min > modal_input_max) {
-//                     event.preventDefault();
-//                     event.stopPropagation();
-//                 }
-//                 form.classList.add('was-validated')
-//             }, false);
-//         });
-//     }, false)
-// })()
-
-var form = document.getElementsByClassName('needs-validation')[0]
-var input_min = document.querySelector('#modal_shelf_minimum_threshold').value
-var input_max = document.querySelector('#modal_shelf_maximum_threshold').value
-
-console.log(form)
-
+// Add event listener to the form so that only valid input can be given. This enforces the minimum shelf value must be greater
+// than the maximum shelf value.
 form.addEventListener('submit', function(event) {
     var form = document.getElementsByClassName('needs-validation')[0]
     var input_min = form.querySelector('#modal_shelf_minimum_threshold')
