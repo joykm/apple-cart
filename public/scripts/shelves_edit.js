@@ -64,9 +64,13 @@ form.addEventListener('submit', function(event) {
 })
 
 function form_shelves_check_min() {
-    if (input_min.value > input_max.value) {
-        return false
-    } else {
-        return true
+    var form = document.getElementsByClassName('needs-validation')[0]
+    var input_min = document.querySelector('#modal_shelf_minimum_threshold')
+    var input_max = document.querySelector('#modal_shelf_maximum_threshold')
+
+    if (input_max.value < input_min.value) {
+        form.setCustomValidity("The shelf maximum must be greater than or equal to the shelf minimum.")
+        return
     }
+    form.setCustomValidity("");
 }
