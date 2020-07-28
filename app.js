@@ -54,12 +54,6 @@ Database Setup and Configuration
 
 const connection = mysql.createPool(DATABASE_CREDENTIALS)
 
-
-/*
-Custom Handlebars Helper for Navbar
-*/
-
-
 /*
 Routing
 */
