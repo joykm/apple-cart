@@ -55,22 +55,16 @@ var form = document.getElementsByClassName('needs-validation')[0]
 var input_min = document.querySelector('#modal_shelf_minimum_threshold').value
 var input_max = document.querySelector('#modal_shelf_maximum_threshold').value
 
+console.log(form)
+
 form.addEventListener('submit', function(event) {
-        if (form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        form.classList.add('was-validated')
-})
-
-function form_shelves_check_min() {
     var form = document.getElementsByClassName('needs-validation')[0]
-    var input_min = document.querySelector('#modal_shelf_minimum_threshold')
-    var input_max = document.querySelector('#modal_shelf_maximum_threshold')
-
-    if (input_max.value < input_min.value) {
-        form.setCustomValidity("The shelf maximum must be greater than or equal to the shelf minimum.")
-        return
+    var input_min = form.querySelector('#modal_shelf_minimum_threshold')
+    var input_max = form.querySelector('#modal_shelf_maximum_threshold')
+    if (input_min.value > input_max.value) {
+        input_min.classList.add("is-invalid")
+        input_max.classList.add("is-invalid")
+        event.preventDefault();
+        event.stopPropagation();
     }
-    form.setCustomValidity("");
-}
+})
