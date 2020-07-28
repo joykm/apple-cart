@@ -1,22 +1,95 @@
+<<<<<<< HEAD
 {{!-- Table --}}
+=======
+{{!-- Content --}}
+
+
+>>>>>>> 36ef935c328e40dd2b4d252a003effef7afb3bac
 <div class="mt-4 container-fluid">
+
+  {{!-- Product Catalog Management Forms --}}
   <div class="row">
-    <h1 class="display-4 text-center">Product Catalog</h1>
+    <div class="col">
+      <h3 class="display-4 text-left">Product Catalog</h3>
+      {{!-- Add Product Form --}}
+      <form action="/product_catalog/new_product" method="post">
+        <div class="form-row">
+
+          <div class="col">
+            <label for="name_input">Product Name</label>
+            <input type="text" class="form-control" id="name_input" name="name_input" placeholder="apple" required>
+          </div>
+
+          <div class="col">
+            <label for="type_input">Product Type</label>
+            <input type="text" class="form-control" id="type_input" name="type_input" placeholder="produce" required>
+          </div>
+
+          <div class="col">
+            <label for="price_input">Price</label>
+            <input type="number" class="form-control" id="price_input" name="price_input" min="0" step="0.01" placeholder="0.00" required>
+          </div>
+
+          <div class="col">
+            <label for="unit_input">Unit</label>
+            <input type="text" class="form-control" id="unit_input" name="unit_input" placeholder="lbs" required>
+          </div>
+
+          <div class="col">
+            <label for="description_input">Desription</label>
+            <input type="text" class="form-control" id="description_input" name="description_input" placeholder="description...">
+          </div>
+
+          <div class="col">
+            <label>&nbsp;</label>
+            <div class="form-row">
+              <div class="col"><button type="submit" class="btn btn-primary " id="add_product_submit">Add Product</button></div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+      {{!-- Remove Product Form --}}
+      <form action="/product_catalog/remove_product" method="post">
+        <div class="form-row">
+
+          <div class="col">
+            <label for="product_name_input">Product Name</label>
+            <select class="form-control" id="product_name_input" name="product_name_input">
+              {{#each sqlResults}}
+              <option>{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col">
+            <label>&nbsp;</label>
+            <div class="form-row">
+                <div class="col"><button type="submit" class="btn btn-primary " id="product_rem_item_submit">Remove Item</button></div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="row">
-      <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-          <th class="text-center" scope="col">Id</th>
-          <th class="text-center" scope="col">Name</th>
-          <th class="text-center" scope="col">Type</th>
-          <th class="text-center" scope="col">Price($)</th>
-          <th class="text-center" scope="col">Unit</th>
-          <th class="text-center" scope='col'>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each results}}
+
+  {{!-- Table --}}
+  <div class="row mt-5">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+            <th class="text-center" scope="col">Id</th>
+            <th class="text-center" scope="col">Name</th>
+            <th class="text-center" scope="col">Type</th>
+            <th class="text-center" scope="col">Price($)</th>
+            <th class="text-center" scope="col">Unit</th>
+            <th class="text-center" scope='col'>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sqlResults}}
           <tr>
             <th class="text-center" scope="row">{{this.id}}</th>
             <td class="text-center">{{this.name}}</td>
@@ -25,8 +98,8 @@
             <td class="text-center">{{this.unit}}</td>
             <td class="text-center">{{this.description}}</td>
           </tr>
-      {{/each}}
-    <tbody>
-  </table>
+        {{/each}}
+      <tbody>
+    </table>
   </div>
 </div>

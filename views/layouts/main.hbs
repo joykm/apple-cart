@@ -12,9 +12,25 @@
 </head>
 <body>
     {{!-- Navbar --}}
+<<<<<<< HEAD
     {{> navigation}}
 
     {{!-- Body --}}
+=======
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Apple Cart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link {{#if dashboard}} active {{/if}}" href="/">Dashboard{{#if dashboard}}<span class="sr-only">(current)</span>{{/if}}</a>
+                <a class="nav-item nav-link {{#if product_catalog}} active {{/if}}" href="product_catalog">Product Catalog{{#if product_catalog}}<span class="sr-only">(current)</span>{{/if}}</a>
+                <a class="nav-item nav-link {{#if inventory}} active {{/if}}" href="inventory">Manage Inventory{{#if inventory}}<span class="sr-only">(current)</span>{{/if}}</a>
+            </div>
+        </div>
+    </nav>
+>>>>>>> 36ef935c328e40dd2b4d252a003effef7afb3bac
     {{{body}}}
 
      <!-- Bootstrap - jQuery first, then Popper.js, then Bootstrap JS -->
