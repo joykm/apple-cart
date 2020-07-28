@@ -18,7 +18,10 @@ for (var row of shelf_row) {
             console.log(min, max)
             
             // Populate the modal with the current values
-            var 
+            var modal_input_min = document.querySelector('#modal_shelf_minimum_threshold')
+            var modal_input_max = document.querySelector('#modal_shelf_maximum_threshold')
+            modal_input_min.value = min
+            modal_input_max.value = max
             $("#shelvesEditModal").modal("show")
         })
     }(row))
