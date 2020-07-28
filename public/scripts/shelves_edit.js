@@ -15,13 +15,18 @@ for (var row of shelf_row) {
             // Get the current values from the table on the screen.
             var min = row.querySelector('.gt_shelf_min_threshold').innerHTML
             var max = row.querySelector('.gt_shelf_max_threshold').innerHTML
+            var id = row.querySelector('.gt_shelf_id').innerHTML
             console.log(min, max)
             
-            // Populate the modal with the current values
+            // Populate the modal with the current values.
             var modal_input_min = document.querySelector('#modal_shelf_minimum_threshold')
             var modal_input_max = document.querySelector('#modal_shelf_maximum_threshold')
+            var modal_input_id = document.querySelector('#modal_shelf_id')
             modal_input_min.value = min
             modal_input_max.value = max
+            modal_input_id.value = id
+
+            // Make the modal appear.
             $("#shelvesEditModal").modal("show")
         })
     }(row))

@@ -46,6 +46,7 @@ As long as you do not get any errors, you should be able to open up your browser
 - The ClearDB (MySQL) database credentials are stored in process.env.CLEARDB_DATABASE_URL
 - All static assets such as pictures, icons, JS files, and stylesheets can be stored in ./public and the path to those assets can be referred to in HTML as './css/example.css' or './img/apple_cart.jpg' as examples.
 - When writing SQL queries, use the following convention to avoid possible conflicts down the road: (1) table and attribute references are all lowercase (2) SQL commands and reserved words are all caps. Ex: `SELECT first_name, last_name FROM users WHERE id = 1`
+- New Convention: When creating new classes for use, prefix them with 'gt_' or 'gt-' so that our team knows this was a class created by one of us. GT stands for Globetrotters! This helps differentiate between standard Bootstrap classes.
 
 ## Github Best Practices
 
