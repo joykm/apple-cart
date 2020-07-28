@@ -73,7 +73,7 @@ app.get('/', function(req, res) {
         results.forEach(element => {
             data += element.first_name + ' '
         });
-        res.render('home', {data: data})    
+        res.render('home', {data: data, dashboard: 1})    
     }
     })
     
@@ -95,7 +95,7 @@ app.get('/product_catalog', function(req, res) {
             res.send('Error loading product_catalog: ' + error)
         } else {
             console.log(results)
-            res.render('product_catalog', {sqlResults: results})
+            res.render('product_catalog', {sqlResults: results, product_catalog: 1})
         }
     })
 })
@@ -165,7 +165,7 @@ app.get('/inventory', function(req, res) {
           res.render('inventory', {data:data})
         }
 
-        console.log(results)
+        // console.log({results: results, inventory: 1})
 
         // Check for not active item
         results.forEach(function(value, index) {
@@ -195,7 +195,7 @@ app.get('/inventory', function(req, res) {
         })
 
         // Send the data to the inventory template
-        res.render('inventory', results)
+        res.render('inventory', {results: results, inventory: 1})
     })
   })
 
