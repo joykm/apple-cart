@@ -8,15 +8,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/inventory/modify_item" method="POST" id="modal_shelf">
+        <form class="needs-validation" action="/inventory/modify_item" method="POST" id="modal_shelf">
             Shelf Thresholds:
           <div class="form-group">
             <label for="modal_shelf_minimum_threshold" class="col-form-label">Minimum:</label>
-            <input type="number" class="form-control" id="modal_shelf_minimum_threshold" name="modal_shelf_minimum_threshold">
+            <input type="number" class="form-control" min='0'id="modal_shelf_minimum_threshold" name="modal_shelf_minimum_threshold">
+            <div class="invalid-feedback">
+              Shelf minimum must be less than or equal to shelf maximum.
+            </div>
           </div>
           <div class="form-group">
             <label for="modal_shelf_maximum_threshold" class="col-form-label">Maximum:</label>
-            <input type="number" class="form-control" id="modal_shelf_maximum_threshold" name="modal_shelf_maximum_threshold">
+            <input type="number" class="form-control" min='0' id="modal_shelf_maximum_threshold" name="modal_shelf_maximum_threshold">
+            <div class="invalid-feedback">
+              Shelf maximum must be more than or equal to shelf minimum.
+            </div>
           </div>
           <div class="form-group">
             <input type="hidden" class="form-control" id="modal_shelf_id" name="modal_shelf_id">
