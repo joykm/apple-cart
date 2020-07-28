@@ -113,7 +113,7 @@
       <thead class="thead-dark">
         <tr>
             <th class="text-center" scope="col" colspan="4">Product</th>
-            <th class="text-center bg-secondary" scope="col" colspan="4">Inventory</th>
+            <th class="text-center bg-secondary" scope="col" colspan="6">Inventory</th>
         </tr>
         <tr>
             <th class="text-center" scope="col">ID</th>
@@ -121,6 +121,8 @@
             <th class="text-center" scope="col">Quantity</th>
             <th class="text-center" scope="col">Expiration Date</th>
             <th class="text-center bg-secondary" scope="col">Warehouse</th>
+            <th class="text-center bg-secondary" scope="col">Warehouse Minimum Threshold</th>
+            <th class="text-center bg-secondary" scope="col">Warehouse Capacity</th>
             <th class="text-center bg-secondary" scope="col">Shelf</th>
             <th class="text-center bg-secondary" scope="col">Minimum Shelf Threshold</th>
             <th class="text-center bg-secondary" scope="col">Shelf Capacity</th>
@@ -136,6 +138,8 @@
               <td class="text-center bg-secondary">{{total_quantity}}</td>
               <td class="text-center bg-secondary">{{exp_date}}</td>
               <td class="text-center bg-secondary">{{wh_quantity}}</td>
+              <td class="text-center bg-secondary">{{wh_min_threshold}}</td>
+              <td class="text-center bg-secondary">{{wh_max_threshold}}</td>
               <td class="text-center bg-secondary">{{shelf_quantity}}</td>
               <td class="text-center bg-secondary">{{shelf_min_threshold}}</td>
               <td class="text-center bg-secondary">{{shelf_max_threshold}}</td>
@@ -146,7 +150,13 @@
               <td class="text-center">{{name}}</td>
               <td class="text-center">{{total_quantity}}</td>
               <td class="text-center">{{exp_date}}</td>
+              {{#if wh_low}}
+              <td class="text-center text-white bg-danger">{{wh_quantity}}</td>
+              {{else}}
               <td class="text-center">{{wh_quantity}}</td>
+              {{/if}}
+              <td class="text-center">{{wh_min_threshold}}</td>
+              <td class="text-center">{{wh_max_threshold}}</td>
               {{#if shelf_low}}
               <td class="text-center text-white bg-danger">{{shelf_quantity}}</td>
               {{else}}

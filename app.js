@@ -104,7 +104,7 @@ app.get('/inventory', function(req, res) {
     var inventoryQueryString =    
         `SELECT id, name, shelf_quantity, DATE_FORMAT(exp_date,'%m-%d-%Y') AS exp_date, 
         wh_quantity, shelf_quantity + wh_quantity AS total_quantity,
-        shelf_min_threshold, shelf_max_threshold, active FROM products;`
+        shelf_min_threshold, shelf_max_threshold, wh_min_threshold, wh_max_threshold, active FROM products;`
 
     // Requesting the data from the database
     connection.query(inventoryQueryString, function(error, results, fields){
@@ -131,6 +131,15 @@ app.get('/inventory', function(req, res) {
                 value.shelf_low = true
             } else {
                 value.shelf_low = false
+            }
+        })
+
+        // Check for "Active" items that are low in the warehouse and set .wh_low to true if they are
+        results.forEach(function(value, index) {
+            if (value.wh_quantity < value.wh_min_threshold && value.active != 0) {
+                value.wh_low = true
+            } else {
+                value.wh_low = false
             }
         })
 
