@@ -112,8 +112,8 @@ app.post('/product_catalog/new_product', function(req, res) {
 
     // Change this to change the query going to the DB
     const addProductQueryString =
-        `INSERT INTO products (name, type, price, unit, description) VALUES
-        ('${name}', '${type}', '${price}', '${unit}', '${description}')
+        `REPLACE INTO products (name, type, price, unit, description, active) VALUES
+        ('${name}', '${type}', '${price}', '${unit}', '${description}',1)
         `
 
     // Send the query, if it fails, log to console, if it succeeds, update the screen.
