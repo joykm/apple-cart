@@ -111,10 +111,16 @@ app.post('/product_catalog/new_product', function(req, res) {
     const description = req.body.description_input;
 
     // Change this to change the query going to the DB
+    /* If adding duplicate item, nothing will change
+       If adding inactive item, active will change from false to true
+       else insert as normal.
+       If we ever want to change this function to add and update, we 
+       can just add more columns after update*/
+
     const addProductQueryString =
         `INSERT INTO products (name, type, price, unit, description) VALUES
         ('${name}', '${type}', '${price}', '${unit}', '${description}')
-        `
+        ON DUPLICATE KEY UPDATE active = 1`
 
     // Send the query, if it fails, log to console, if it succeeds, update the screen.
     connection.query(addProductQueryString, function(error, results, fields){
