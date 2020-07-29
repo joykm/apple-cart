@@ -114,7 +114,7 @@ app.post('/product_catalog/new_product', function(req, res) {
     /* If adding duplicate item, nothing will change
        If adding inactive item, active will change from false to true
        else insert as normal.
-       If we ever want to change this furnction to add and update, we 
+       If we ever want to change this function to add and update, we 
        can just add more columns after update*/
 
     const addProductQueryString =
