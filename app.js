@@ -251,9 +251,9 @@ app.post('/inventory/remove_item', function (req, res) {
 app.post('/inventory/modify_item', function(req, res) {
     
     // Grab the necessary data from the POST request body
-    var id = req.body.modal_shelf_id;
-    var min = req.body.modal_shelf_minimum_threshold
-    var max = req.body.modal_shelf_maximum_threshold
+    const id = req.body.modal_shelf_id;
+    const min = req.body.modal_shelf_minimum_threshold
+    const max = req.body.modal_shelf_maximum_threshold
     
     // Form the SQL Query needed to update the shelf thresholds
     var mod_inventory_query_string = `UPDATE products SET shelf_min_threshold='${min}', shelf_max_threshold='${max}' WHERE id='${id}'`
