@@ -41,7 +41,7 @@ form.addEventListener('submit', function(event) {
     var input_min = form.querySelector('#modal_shelf_minimum_threshold')
     var input_max = form.querySelector('#modal_shelf_maximum_threshold')
     console.log (input_min.value, input_max.value, input_min.value > input_max.value)
-    if (input_min.value > input_max.value) {
+    if (parseInt(input_min.value) > parseInt(input_max.value)) {
         input_min.classList.add("is-invalid")
         input_max.classList.add("is-invalid")
         event.preventDefault();
