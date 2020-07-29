@@ -35,10 +35,12 @@ for (var row of shelf_row) {
 
 // Add event listener to the form so that only valid input can be given. This enforces the minimum shelf value must be greater
 // than the maximum shelf value.
+var form = document.getElementsByClassName('needs-validation')[0]
+
 form.addEventListener('submit', function(event) {
-    var form = document.getElementsByClassName('needs-validation')[0]
     var input_min = form.querySelector('#modal_shelf_minimum_threshold')
     var input_max = form.querySelector('#modal_shelf_maximum_threshold')
+    console.log (input_min.value, input_max.value, input_min.value > input_max.value)
     if (input_min.value > input_max.value) {
         input_min.classList.add("is-invalid")
         input_max.classList.add("is-invalid")
