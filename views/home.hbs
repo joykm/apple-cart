@@ -1,7 +1,26 @@
-{{!-- Content --}}
+{{!-- Content 
 <div class="mt-4 container-fluid">
     <h1 class="display-4 text-center">The Apple Cart</h1>
     <h4 class="text-center">Version 1.0.2</h4>
     <h4 class="text-center">{{data}}</h4>
-</div>
+</div>--}}
 
+<div class="mt-4 container-fluid">
+  <h2 class="display-4 text-center">Apple Cart User Login</h2>
+
+  {{!-- User login Forms --}}
+  <form action="/user_login" method="post">
+    <div class="form-group">
+      <label for="user_name">User Name:</label>
+      <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Enter Username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+    </div>
+   
+    <button type="submit" class="btn btn-primary " id="login_submit">Submit</button></div>
+        
+  </form>
+</div>
