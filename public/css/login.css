@@ -1,0 +1,49 @@
+/**********************************************************
+* Name:        Ellen Yang
+* Date:        7/30/2020
+* Description: The style sheet used for home login pate
+**********************************************************/
+/*style for background*/
+body,html{
+    height:100%;
+}
+
+*{
+	box-sizing: border-box; 
+}
+
+/*Background image used*/
+.bg-img {
+	background-image: url("/images/color_apple.jpg");
+	min-height: 760px;  /*height of image*/
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+/*form container, style and place in center*/
+.container{
+	position: absolute;
+	left:35%;
+	top: 15%;
+	margin: 20px;
+	max-width: 400px;
+	padding: 16px;
+	background-color:white;
+}
+
+/*Input file*/
+input[type=text],input[type=password]{
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border:none;
+	background: #f1f1f1;
+}
+
+
+
+
+
+
