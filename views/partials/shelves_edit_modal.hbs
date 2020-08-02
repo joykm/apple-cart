@@ -2,29 +2,44 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Adjust Shelf Capacity</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Adjust Shelf/Warehouse Capacity</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form class="needs-validation" action="/inventory/modify_item" method="POST" id="modal_shelf">
-            Shelf Thresholds:
-          <div class="form-group">
-            <label for="modal_shelf_minimum_threshold" class="col-form-label">Minimum:</label>
-            <input type="number" class="form-control" min='0'id="modal_shelf_minimum_threshold" name="modal_shelf_minimum_threshold">
-          </div>
-          <div class="form-group">
-            <label for="modal_shelf_maximum_threshold" class="col-form-label">Maximum:</label>
-            <input type="number" class="form-control" min='0' id="modal_shelf_maximum_threshold" name="modal_shelf_maximum_threshold">
-            <div class="invalid-feedback">
-              Shelf maximum must be more than or equal to shelf minimum.
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="hidden" class="form-control" id="modal_shelf_id" name="modal_shelf_id">
-          </div>
-        </form>
+          <form class="needs-validation" action="/inventory/modify_item" method="POST" id="modal_shelf">
+              Shelf Thresholds:
+              <div class="form-group">
+                  <label for="modal_shelf_minimum_threshold" class="col-form-label">Minimum:</label>
+                  <input type="number" class="form-control" min='0' id="modal_shelf_minimum_threshold" name="modal_shelf_minimum_threshold">
+              </div>
+              <div class="form-group">
+                  <label for="modal_shelf_maximum_threshold" class="col-form-label">Maximum:</label>
+                  <input type="number" class="form-control" min='0' id="modal_shelf_maximum_threshold" name="modal_shelf_maximum_threshold">
+                  <div class="invalid-feedback">
+                      Shelf maximum must be more than or equal to shelf minimum.
+                  </div>
+              </div>
+
+              Warehouse Thresholds:
+              <div class="form-group">
+                  <label for="modal_wh_minimum_threshold" class="col-form-label">Minimum:</label>
+                  <input type="number" class="form-control" min='0' id="modal_wh_minimum_threshold" name="modal_wh_minimum_threshold">
+              </div>
+              <div class="form-group">
+                  <label for="modal_wh_maximum_threshold" class="col-form-label">Maximum:</label>
+                  <input type="number" class="form-control" min='0' id="modal_wh_maximum_threshold" name="modal_wh_maximum_threshold">
+                  <div class="invalid-feedback">
+                      Warehouse maximum must be more than or equal to warehouse minimum.
+                  </div>
+              </div>
+              <div class="form-group">
+                  <input type="hidden" class="form-control" id="modal_shelf_id" name="modal_shelf_id">
+              </div>
+
+
+          </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

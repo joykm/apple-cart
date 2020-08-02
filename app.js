@@ -262,9 +262,11 @@ app.post('/inventory/modify_item', function(req, res) {
     const id = req.body.modal_shelf_id;
     const min = req.body.modal_shelf_minimum_threshold
     const max = req.body.modal_shelf_maximum_threshold
+    const wh_min = req.body.modal_wh_minimum_threshold
+    const wh_max = req.body.modal_wh_maximum_threshold
     
     // Form the SQL Query needed to update the shelf thresholds
-    var mod_inventory_query_string = `UPDATE products SET shelf_min_threshold='${min}', shelf_max_threshold='${max}' WHERE id='${id}'`
+    var mod_inventory_query_string = `UPDATE products SET shelf_min_threshold='${min}', shelf_max_threshold='${max}', wh_min_threshold='${wh_min}', wh_max_threshold='${wh_max}' WHERE id='${id}'`
 
     // Send the query, if it fails, log to console, if it succeeds, update the row and refresh the data on the screen.
     connection.query(mod_inventory_query_string, function(error, results, fields) {
