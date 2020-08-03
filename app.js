@@ -79,6 +79,13 @@ app.get('/', function(req, res) {
     
 })
 
+// Login Route
+app.get('/login', function(req, res) {
+
+    res.render('login')
+    
+})
+
 /* 
 Product Catalog Route
 User will be able to view the active products in the proudct catalog
