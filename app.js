@@ -90,7 +90,7 @@ app.get('/login', function(req, res) {
 app.get('/user', function(req, res) {
 
     // Change this to change the query going to the DB
-    const userQueryString = 'SELECT id, first_name, last_name FROM users'
+    const userQueryString = 'SELECT id, first_name, last_name FROM users WHERE active is TRUE'
 
     // Requesting the data from the database
     connection.query(userQueryString, function(error, results, fields){
