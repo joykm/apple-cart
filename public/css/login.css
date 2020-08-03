@@ -12,22 +12,23 @@ body,html{
 	box-sizing: border-box; 
 }
 
-/*Background image used*/
+/*Background image used, make image center and cover the entire monitor*/
 .bg-img {
 	background-image: url("/images/color_apple.jpg");
-	min-height: 760px;  /*height of image*/
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-attachment: fixed;
 	position: relative;
+	height: 100%
 }
 
-/*form container, style and place in center*/
+/*form container, style and place in center regarless the size of monitor*/
 .container{
-	position: absolute;
-	left:35%;
-	top: 15%;
-	margin: 20px;
+	position: fixed;
+	left:50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
 	max-width: 400px;
 	padding: 16px;
 	background-color:white;
