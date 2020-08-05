@@ -99,7 +99,7 @@ app.get('/user', function(req, res) {
             res.send('Error display users: ' + error)
         } else {
             console.log(results)
-            res.render('user', {sqlResults: results, product_catalog: 1})
+            res.render('user', {sqlResults: results, user: 1})
         }
     })
 })
