@@ -82,7 +82,7 @@ app.get('/', function(req, res) {
 // Login Route
 app.get('/login', function(req, res) {
 
-    res.render('login')
+    res.render('login', {login:1})
     
 })
 
