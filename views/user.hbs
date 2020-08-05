@@ -1,0 +1,28 @@
+<div class="mt-4 container-fluid">
+    {{!-- Header--}}
+    <div class="row">
+        <h1 class="display-4-text-left">Current Users</h1>
+    </div>
+
+    {{!-- Table --}}
+    <div class="row mt-5">
+        <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center" scope="col">Id</th>
+                <th class="text-center" scope="col">First Name</th>
+                <th class="text-center" scope="col">Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each sqlResults}}
+            <tr>
+                <th class="text-center" scope="row">{{this.id}}</th>
+                <td class="text-center">{{this.first_name}}</td>
+                <td class="text-center">{{this.last_name}}</td>
+            </tr>
+            {{/each}}
+        <tbody>
+        </table>
+    </div>
+</div>

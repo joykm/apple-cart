@@ -86,6 +86,24 @@ app.get('/login', function(req, res) {
     
 })
 
+// User Route
+app.get('/user', function(req, res) {
+
+    // Change this to change the query going to the DB
+    const userQueryString = 'SELECT id, first_name, last_name FROM users WHERE active is TRUE'
+
+    // Requesting the data from the database
+    connection.query(userQueryString, function(error, results, fields){
+        if (error) {
+            console.log('Error display users: ' + error)
+            res.send('Error display users: ' + error)
+        } else {
+            console.log(results)
+            res.render('user', {sqlResults: results, product_catalog: 1})
+        }
+    })
+})
+
 /* 
 Product Catalog Route
 User will be able to view the active products in the proudct catalog
