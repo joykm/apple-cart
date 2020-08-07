@@ -13,6 +13,8 @@ Dependencies
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mysql = require('mysql')
+var session = require('express-session');
+
 
 /*
 Create Express Server
@@ -36,6 +38,12 @@ app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
 /*
 Environment Configuration
 */
@@ -58,50 +66,75 @@ const connection = mysql.createPool(DATABASE_CREDENTIALS)
 Routing
 */
 
+// Login route
+app.get('/login', function(req, res) {
+    res.render('login', {login:1});
+});
+
+// Auth route
+app.post('/auth', function(req, res) {
+	const username = req.body.username;
+    const password = req.body.password;
+    console.log(username, password); // to do: remove when we are done testing
+	if (username && password) {
+		connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+			if (results.length > 0) {
+				req.session.loggedin = true;
+				req.session.username = username;
+				res.redirect('/');
+			} else {
+				res.send('Incorrect Username and/or Password!');
+			}
+		});
+	} else {
+		res.send('Please enter Username and Password!');
+	}
+});
+
 // Home/Main/Dashboard Route
 app.get('/', function(req, res) {
 
-    // Simple query to make sure the database is connected.
-    var data = 'ClearDB Connected. Users are: '
+    if (req.session.loggedin) {
+          // Simple query to make sure the database is connected.
+        let data = 'ClearDB Connected. Users are: '
 
-    connection.query('SELECT * FROM users', function(error, results, fields){
-        if (error) {
-            data = 'ClearDB is down!'
-            console.log(error)
-            res.render('home', {data: data})
-        } else {
-        results.forEach(element => {
-            data += element.first_name + ' '
-        });
-        res.render('home', {data: data, dashboard: 1})    
+        connection.query('SELECT * FROM users', function(error, results, fields){
+            if (error) {
+                data = 'ClearDB is down!'
+                console.log(error)
+                res.render('home', {data: data})
+            } else {
+            results.forEach(element => {
+                data += element.first_name + ' '
+            });
+            res.render('home', {data: data, dashboard: 1})    
+            }
+        })
+    } else {
+        res.redirect('/login')
+        // res.send('Please login to view this page!');
     }
-    })
-    
-})
-
-// Login Route
-app.get('/login', function(req, res) {
-
-    res.render('login', {login:1})
-    
 })
 
 // User Route
 app.get('/user', function(req, res) {
+    if (req.session.loggedin) {
+        // Change this to change the query going to the DB
+        const userQueryString = 'SELECT id, first_name, last_name FROM users WHERE active is TRUE'
 
-    // Change this to change the query going to the DB
-    const userQueryString = 'SELECT id, first_name, last_name FROM users WHERE active is TRUE'
-
-    // Requesting the data from the database
-    connection.query(userQueryString, function(error, results, fields){
-        if (error) {
-            console.log('Error display users: ' + error)
-            res.send('Error display users: ' + error)
-        } else {
-            console.log(results)
-            res.render('user', {sqlResults: results, user: 1})
-        }
-    })
+        // Requesting the data from the database
+        connection.query(userQueryString, function(error, results, fields){
+            if (error) {
+                console.log('Error display users: ' + error)
+                res.send('Error display users: ' + error)
+            } else {
+                console.log(results)
+                res.render('user', {sqlResults: results, user: 1})
+            }
+        })        
+    } else {
+        res.redirect('/login')
+    }
 })
 
 /* 
@@ -109,20 +142,23 @@ Product Catalog Route
 User will be able to view the active products in the proudct catalog
 */
 app.get('/product_catalog', function(req, res) {
+    if (req.session.loggedin) {
+        // Change this to change the query going to the DB
+        const productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products WHERE active is TRUE'
 
-    // Change this to change the query going to the DB
-    const productCatalogQueryString = 'SELECT id, name, type, price, unit, description FROM products WHERE active is TRUE'
-
-    // Requesting the data from the database
-    connection.query(productCatalogQueryString, function(error, results, fields){
-        if (error) {
-            console.log('Error loading product_catalog: ' + error)
-            res.send('Error loading product_catalog: ' + error)
-        } else {
-            console.log(results)
-            res.render('product_catalog', {sqlResults: results, product_catalog: 1})
-        }
-    })
+        // Requesting the data from the database
+        connection.query(productCatalogQueryString, function(error, results, fields){
+            if (error) {
+                console.log('Error loading product_catalog: ' + error)
+                res.send('Error loading product_catalog: ' + error)
+            } else {
+                console.log(results)
+                res.render('product_catalog', {sqlResults: results, product_catalog: 1})
+            }
+        })
+    } else {
+        res.redirect('/login')
+    }
 })
 
 // Products - New Product Route
@@ -181,53 +217,56 @@ app.post('/product_catalog/remove_product', function (req, res) {
 
 // Inventory Route
 app.get('/inventory', function(req, res) {
-    
-    // Change this to change the query going to the DB
-    var inventoryQueryString =    
-        `SELECT id, name, shelf_quantity, DATE_FORMAT(exp_date,'%m-%d-%Y') AS exp_date, 
-        wh_quantity, shelf_quantity + wh_quantity AS total_quantity,
-        shelf_min_threshold, shelf_max_threshold, wh_min_threshold, wh_max_threshold, active FROM products;`
+    if (req.session.loggedin) {
+        // Change this to change the query going to the DB
+        var inventoryQueryString =    
+            `SELECT id, name, shelf_quantity, DATE_FORMAT(exp_date,'%m-%d-%Y') AS exp_date, 
+            wh_quantity, shelf_quantity + wh_quantity AS total_quantity,
+            shelf_min_threshold, shelf_max_threshold, wh_min_threshold, wh_max_threshold, active FROM products;`
 
-    // Requesting the data from the database
-    connection.query(inventoryQueryString, function(error, results, fields){
-        if (error) {
-          var data = 'Error in querying the database.'
-          console.log(error)
-          res.render('inventory', {data:data})
-        }
-
-        // console.log({results: results, inventory: 1})
-
-        // Check for not active item
-        results.forEach(function(value, index) {
-            if (value.active != 0) {
-                value.not_catalog = false
-            } else {
-                value.not_catalog = true
+        // Requesting the data from the database
+        connection.query(inventoryQueryString, function(error, results, fields){
+            if (error) {
+            var data = 'Error in querying the database.'
+            console.log(error)
+            res.render('inventory', {data:data})
             }
-        })
 
-        // Check for "Active" items that are low on the shelf and set .shelf_low to true if they are
-        results.forEach(function(value, index) {
-            if (value.shelf_quantity < value.shelf_min_threshold && value.active != 0) {
-                value.shelf_low = true
-            } else {
-                value.shelf_low = false
-            }
-        })
+            // console.log({results: results, inventory: 1})
 
-        // Check for "Active" items that are low in the warehouse and set .wh_low to true if they are
-        results.forEach(function(value, index) {
-            if (value.wh_quantity < value.wh_min_threshold && value.active != 0) {
-                value.wh_low = true
-            } else {
-                value.wh_low = false
-            }
-        })
+            // Check for not active item
+            results.forEach(function(value, index) {
+                if (value.active != 0) {
+                    value.not_catalog = false
+                } else {
+                    value.not_catalog = true
+                }
+            })
 
-        // Send the data to the inventory template
-        res.render('inventory', {results: results, inventory: 1})
-    })
+            // Check for "Active" items that are low on the shelf and set .shelf_low to true if they are
+            results.forEach(function(value, index) {
+                if (value.shelf_quantity < value.shelf_min_threshold && value.active != 0) {
+                    value.shelf_low = true
+                } else {
+                    value.shelf_low = false
+                }
+            })
+
+            // Check for "Active" items that are low in the warehouse and set .wh_low to true if they are
+            results.forEach(function(value, index) {
+                if (value.wh_quantity < value.wh_min_threshold && value.active != 0) {
+                    value.wh_low = true
+                } else {
+                    value.wh_low = false
+                }
+            })
+
+            // Send the data to the inventory template
+            res.render('inventory', {results: results, inventory: 1})
+        })
+    } else {
+        res.redirect('/login')
+    }
   })
 
 // Inventory - New Item Route
