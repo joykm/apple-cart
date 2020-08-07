@@ -304,10 +304,10 @@ app.post('/inventory/remove_item', function (req, res) {
     var shelf_inventory = req.body.product_shelf_inventory_input;
 
     // Form the SQL Query needed to update the product inventory
-    var rem_inventory_query_string = "UPDATE products SET " +
-        "shelf_quantity = shelf_quantity - " + shelf_inventory + ", " +
-        "wh_quantity = wh_quantity - " + wh_inventory + " " +
-        "WHERE name = '" + product_name + "'"
+    var rem_inventory_query_string = 
+        `UPDATE products 
+        SET shelf_quantity = shelf_quantity - ${shelf_inventory}, wh_quantity = wh_quantity - ${wh_inventory}
+        WHERE name = '${product_name}'`
 
     // Send the query, if it fails, log to console, if it succeeds, update the screen.
     connection.query(rem_inventory_query_string, function (error, results, fields) {
