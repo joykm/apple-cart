@@ -14,6 +14,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mysql = require('mysql')
 var session = require('express-session');
+const { json } = require('express');
 
 
 /*
@@ -80,7 +81,8 @@ app.post('/auth', function(req, res) {
 		connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
 				req.session.loggedin = true;
-				req.session.username = username;
+                req.session.username = username;
+                req.session.userId = results[0].id
 				res.redirect('/');
 			} else {
 				res.send('Incorrect Username and/or Password!');
@@ -268,6 +270,36 @@ app.get('/inventory', function(req, res) {
         res.redirect('/login')
     }
   })
+
+// Transaction Routes
+app.get('/transaction', function(req, res){
+    if (req.session.loggedin) {
+        res.render('transaction', {transaction: 1})
+    } else {
+        res.redirect('/login')
+    }
+})
+
+app.post('/transaction/get_data', function(req, res){
+    var getDataQueryString = req.body.requestedData
+    connection.query(getDataQueryString, function(error, results, fields){
+        
+        // Handle errors
+        if (error) {
+            console.log(error)
+        }
+        
+        // Parse the data and send it. We appened the user id to the results so we can audit who made what sales
+        results = JSON.parse(JSON.stringify(results))
+        data = {}
+        results.forEach(element => {
+            data[element.id] = element
+        })
+        data.userId = req.session.userId
+        res.send(JSON.stringify(data))
+    })
+})
+
 
 // Inventory - New Item Route
 app.post('/inventory/new_item', function(req, res) {

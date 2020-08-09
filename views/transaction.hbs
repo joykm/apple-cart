@@ -1,0 +1,61 @@
+{{!-- Content --}}
+<div class="mt-4 container-fluid">
+
+  {{!-- Header/Title --}}
+  <div class="row">
+    <div class="col">
+        <h1 class="display-4 text-left">Transactions</h1>
+        <p class="text-left">Click on an item on the left to add one of it to the basket. Items that do not have inventory on the shelf show the warehouse inventory in a red bubble.</p>
+    </div>
+  </div>
+
+  <div class="row">
+      
+      <div id='gt_available_products_on_shelf_window' class="col-4 p-2">
+        <h2 class="text-center">Available Products</h2>
+        <div id='gt_available_products_list_group' class="list-group">
+
+        </div>
+      </div>
+      <div id='gt_products_in_basket_window' class="col-8 p-4">
+          <h2 class="text-center">Checkout Basket</h2>
+          <table id='gt_products_in_basket_table' class="table table-striped">
+              <thead>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total</th>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="text-right">Subtotal:</h3>
+                    <h5 class="text-right">Total Number of Items:</h3>
+                    <h5 class="text-right">Total Tax:</h3>
+                    <h3 class="text-right">Grand Total:</h3>
+                </div>
+                <div class="col-6" id='gt_products_totals_area'>
+                    <h5><span id="gt_subtotal"></span></h3>
+                    <h5><span id="gt_n_items"></span></h3>
+                    <h5><span id="gt_total_tax"></span></h3>
+                    <h3><span id="gt_grand_total"></span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="gt_clear_button" class="btn btn-danger btn-block">Clear Basket</button>
+                </div>
+                <div class="col">
+                    <button id="gt_checkout_button" class="btn btn-success btn-block">Checkout</button>
+                </div>
+            </div>
+            <div class="row">
+                <h3 class="text-center text-danger m-4" id="gt_transaction_error_message"></h3>
+            </div>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript" src='./scripts/transaction.js'></script>
