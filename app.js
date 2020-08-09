@@ -38,7 +38,6 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
-
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -70,6 +69,14 @@ Routing
 // Login route
 app.get('/login', function(req, res) {
     res.render('login', {login:1});
+});
+
+// Logout route
+app.get('/logout', function(req, res) {
+    if (req.session.loggedin === true) {
+        req.session.loggedin = false;
+    }
+    res.redirect('/login');
 });
 
 // Auth route
