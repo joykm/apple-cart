@@ -149,19 +149,15 @@ app.get('/user', function(req, res) {
 // Users - New User Route
 app.post('/user/new_user', function(req, res) {
 
-    // Grab the necessary data from the POST request body
+    // Get the data from the POST request body
     const fname = req.body.fist_name_input;
     const lname = req.body.last_name_input;
     const e_mail = req.body.email_input;
     const uname = req.body.username_input;
     const pword = req.body.password_input;
 
-    // Change this to change the query going to the DB
-    /* If adding duplicate item, nothing will change
-       If adding inactive item, active will change from false to true
-       else insert as normal.
-       If we ever want to change this function to add and update, we 
-       can just add more columns after update*/
+    // If ducplicate user is added, it will change active flag to 1. If active flag is already 1, nothing will happen.
+    // Duplicate is determined by username or email being in use already.
 
     const addUserQueryString =
         `INSERT INTO users (first_name, last_name, email, role_id, active, username, password) VALUES
