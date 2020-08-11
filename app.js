@@ -146,6 +146,55 @@ app.get('/user', function(req, res) {
     }
 })
 
+// Users - New User Route
+app.post('/user/new_user', function(req, res) {
+
+    // Get the data from the POST request body
+    const fname = req.body.fist_name_input;
+    const lname = req.body.last_name_input;
+    const e_mail = req.body.email_input;
+    const uname = req.body.username_input;
+    const pword = req.body.password_input;
+
+    // If ducplicate user is added, it will change active flag to 1. If active flag is already 1, nothing will happen.
+    // Duplicate is determined by username or email being in use already.
+
+    const addUserQueryString =
+        `INSERT INTO users (first_name, last_name, email, role_id, active, username, password) VALUES
+        ('${fname}', '${lname}', '${e_mail}', '${1}', '${1}', '${uname}', '${pword}')
+        ON DUPLICATE KEY UPDATE active = 1`
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(addUserQueryString, function(error, results, fields){
+        if (error) {
+            console.log('Error adding user to users: ' + error)
+            res.send('Error adding user to users: ' + error)
+        } else {
+            res.redirect('/user')
+        }
+    })
+})
+
+// Users - Remove User Route
+app.post('/user/remove_user', function (req, res) {
+
+    // Grab the necessary data from the POST request body
+    const user_id = req.body.user_id_input;
+    
+    // Form the SQL Query needed to update the product catalog
+    const rem_user_query_string = `UPDATE users SET active = 0 WHERE id = '${user_id}'` 
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(rem_user_query_string, function (error, results, fields) {
+        if (error) {
+            console.log('Error removing user from users: ' + error)
+            res.send('Error removing user from users: ' + error)
+        } else {
+            res.redirect('/user')
+        }
+    })
+})
+
 /* 
 Product Catalog Route
 User will be able to view the active products in the proudct catalog
