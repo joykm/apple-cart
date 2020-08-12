@@ -108,7 +108,7 @@ app.get('/', function(req, res) {
         let data = 'ClearDB Connected.'
         
         //Total items in catalog
-        connection.query('SELECT COUNT(*) as numItems, COUNT(DISTINCT type) AS numTypes FROM products', function(error, results, fields){
+        connection.query('SELECT COUNT(*) as numItems, COUNT(DISTINCT type) AS numTypes FROM products WHERE active is True', function(error, results, fields){
             if (error) {
                 data = 'ClearDB is down!'
                 console.log(error)
@@ -139,8 +139,7 @@ app.get('/user', function(req, res) {
             if (error) {
                 console.log('Error display users: ' + error)
                 res.send('Error display users: ' + error)
-            } else {
-                console.log(results)
+            } else {           
                 res.render('user', {sqlResults: results, user: 1})
             }
         })        
@@ -213,7 +212,6 @@ app.get('/product_catalog', function(req, res) {
                 console.log('Error loading product_catalog: ' + error)
                 res.send('Error loading product_catalog: ' + error)
             } else {
-                console.log(results)
                 res.render('product_catalog', {sqlResults: results, product_catalog: 1})
             }
         })
