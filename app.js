@@ -79,8 +79,8 @@ app.get('/logout', function(req, res) {
     res.redirect('/login');
 });
 
-// Auth route
-app.post('/auth', function(req, res) {
+// Login authentication route
+app.post('/login', function(req, res) {
 	const username = req.body.username;
     const password = req.body.password;
     console.log(username, password); // to do: remove when we are done testing
@@ -89,10 +89,10 @@ app.post('/auth', function(req, res) {
 			if (results.length > 0) {
 				req.session.loggedin = true;
                 req.session.username = username;
-                req.session.userId = results[0].id
+                req.session.userId = results[0].id;
 				res.redirect('/');
 			} else {
-				res.send('Incorrect Username and/or Password!');
+                res.render('login', {badLogin: true, login: 1});
 			}
 		});
 	} else {

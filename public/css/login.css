@@ -43,6 +43,11 @@ input[type=text],input[type=password]{
 	background: #f1f1f1;
 }
 
+#login-error {
+	color: red;
+	margin-left: 50px;
+}
+
 
 
 
