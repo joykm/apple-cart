@@ -104,21 +104,24 @@ app.post('/login', function(req, res) {
 app.get('/', function(req, res) {
 
     if (req.session.loggedin) {
-          // Simple query to make sure the database is connected.
-        let data = 'ClearDB Connected. Users are: '
-
-        connection.query('SELECT * FROM users', function(error, results, fields){
+        // Simple query to make sure the database is connected.
+        let data = 'ClearDB Connected.'
+        
+        //Total items in catalog
+        connection.query('SELECT COUNT(*) as numItems, COUNT(DISTINCT type) AS numTypes FROM products', function(error, results, fields){
             if (error) {
                 data = 'ClearDB is down!'
                 console.log(error)
                 res.render('home', {data: data})
             } else {
-            results.forEach(element => {
-                data += element.first_name + ' '
-            });
-            res.render('home', {data: data, dashboard: 1})    
+                numItems = results[0].numItems;
+                numTypes = results[0].numTypes;   
+                res.render('home', {data: data, numItems:numItems, numTypes:numTypes, dashboard: 1})
             }
         })
+
+          
+
     } else {
         res.redirect('/login')
         // res.send('Please login to view this page!');
