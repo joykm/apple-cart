@@ -2,7 +2,7 @@
 
 <div class="bg-img">
   {{!-- User login Forms --}}
-  <form action="/auth" method="post" class="container">
+  <form action="/login" method="post" class="container">
     <h1>The Apple Cart</h1>
 
     <label for="username"><b>Username:</b></label>
@@ -12,6 +12,9 @@
     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
   
     <button type="submit" class="btn btn-primary " id="login_submit">Login</button>
+    {{#if badLogin}}
+    <span id="login-error">Bad username or password</span>
+    {{/if}}
         
   </form>
 </div>

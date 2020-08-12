@@ -13,7 +13,9 @@
             <a class="nav-item nav-link {{#if user}} active {{/if}}" href="user">Users{{#if user}}<span class="sr-only">(current)</span>{{/if}}</a>
         </div>
     </div>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/logout">Logout</a>
+    <div class="navbar-nav d-flex align-items-center">
+        <a class="nav-item nav-link" href="/logout">
+            <button class="btn btn-small btn-danger">Logout</button>
+        </a>
     </div>
 </nav>
