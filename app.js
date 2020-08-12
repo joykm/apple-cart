@@ -83,7 +83,7 @@ app.get('/logout', function(req, res) {
 app.post('/login', function(req, res) {
 	const username = req.body.username;
     const password = req.body.password;
-    console.log(username, password); // to do: remove when we are done testing
+
 	if (username && password) {
 		connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
