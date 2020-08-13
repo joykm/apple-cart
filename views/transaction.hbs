@@ -8,7 +8,8 @@
         <p class="text-left">Click on an item on the left to add one of it to the basket. Items that do not have inventory on the shelf show the warehouse inventory in a red bubble.</p>
     </div>
   </div>
-
+  
+  {{!-- Product List --}}
   <div class="row">
       
       <div id='gt_available_products_on_shelf_window' class="col-4 p-2">
@@ -17,6 +18,8 @@
 
         </div>
       </div>
+
+      {{!-- Checkout Basket --}}
       <div id='gt_products_in_basket_window' class="col-8 p-4">
           <h2 class="text-center">Checkout Basket</h2>
           <table id='gt_products_in_basket_table' class="table table-striped">
@@ -29,6 +32,8 @@
               <tbody>
               </tbody>
           </table>
+
+            {{!-- Cost Calculations --}}
             <div class="row">
                 <div class="col-6">
                     <h5 class="text-right">Subtotal:</h3>
@@ -56,6 +61,52 @@
             </div>
       </div>
   </div>
+
+
+  {{!-- Return Header --}}
+  <div class="row">
+      <div class="col">
+          <h3 class="display-4 text-left">Returns</h3>
+          <p class="text-left">Note: Returned items cannot go back on the shelf. They must be destroyed.</p>
+      </div>
+  </div>
+
+
+  {{!-- Return Form --}}
+<div class="row">
+    <div class="col">
+        {{!-- <form action="/transaction/return_item" method="post"> --}}
+            <div class="form-row">
+
+                <div class="col">
+                    <label for="product_name_input">Product Name</label>
+                    <select class="form-control" id="product_name_input" name="product_name_input">
+                        {{#each sqlResults}}
+                        <option>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="quantity_input">Quantity</label>
+                    <input type="number" class="form-control" id="quantity_input" name="quantity_input" min="0" placeholder="0" required>
+                </div>
+
+                <div class="col">
+                    <label>&nbsp;</label>
+                    <div class="form-row">
+                        <div class="col"><button type="submit" class="btn btn-primary" id="gt_return_button">Return Item</button></div>
+                    </div>
+                </div>
+            </div>
+        {{!-- </form> --}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div id="returnDiv">Test.</div>
+    </div>
 </div>
 
 <script type="text/javascript" src='./scripts/transaction.js'></script>

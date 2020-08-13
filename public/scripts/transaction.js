@@ -12,6 +12,7 @@ const basketTable = document.querySelector('#gt_products_in_basket_table tbody')
 const checkoutButton = document.querySelector('#gt_checkout_button')
 const clearButton = document.querySelector('#gt_clear_button')
 const errorMessageText = document.querySelector('#gt_transaction_error_message')
+const returnButton = document.querySelector('#gt_return_button')
 
 // Save the created basket in an object for easy access later
 let basket = {  
@@ -33,6 +34,9 @@ window.addEventListener("load", function() {
         emptyBasket()
         clearBasketTable()
         clearTotals()
+    })
+    returnButton.addEventListener("click", function () {
+        returnItem()
     })
 })
 
@@ -286,4 +290,12 @@ function emptyBasket() {
         userId: thisUserId,
         empty: true    
     }
+}
+
+function returnItem() {
+    let returnDiv = document.getElementById("returnDIV");
+    let product_name = req.body.product_name_input;
+    let quantity = req.body.quantity_input;
+
+    returnDiv.innerHTML = "Successfully returned " + quantity + " " + product_name + "(s)."
 }
