@@ -2,7 +2,7 @@
 app.js
 
 Created On: 7/12/2020
-Last Updated On: 7/19/2020
+Last Updated On: 8/13/2020
 Description: Entry point for "The Apple Cart" web app, Store Inventory Management System
 */
 
@@ -158,7 +158,7 @@ app.post('/user/new_user', function(req, res) {
     const uname = req.body.username_input;
     const pword = req.body.password_input;
 
-    // If ducplicate user is added, it will change active flag to 1. If active flag is already 1, nothing will happen.
+    // If duplicate user is added, it will change active flag to 1. If active flag is already 1, nothing will happen.
     // Duplicate is determined by username or email being in use already.
 
     const addUserQueryString =
@@ -199,7 +199,7 @@ app.post('/user/remove_user', function (req, res) {
 
 /* 
 Product Catalog Route
-User will be able to view the active products in the proudct catalog
+User will be able to view the active products in the product catalog
 */
 app.get('/product_catalog', function(req, res) {
     if (req.session.loggedin) {
@@ -291,8 +291,6 @@ app.get('/inventory', function(req, res) {
             res.render('inventory', {data:data})
             }
 
-            // console.log({results: results, inventory: 1})
-
             // Check for not active item
             results.forEach(function(value, index) {
                 if (value.active != 0) {
@@ -329,9 +327,19 @@ app.get('/inventory', function(req, res) {
   })
 
 // Transaction Routes
-app.get('/transaction', function(req, res){
+
+app.get('/transaction', function (req, res) {
     if (req.session.loggedin) {
-        res.render('transaction', {transaction: 1})
+        let return_query_string = 'SELECT * FROM products';
+
+        // Send the query, if it fails, log to console, if it succeeds, update the screen.
+        connection.query(return_query_string, function (error, results, fields) {
+            if (error) {
+                console.log("Dynamic dropdown population failed...");
+            } else {
+                res.render('transaction', { sqlResults: results, transaction: 1 });
+            }
+        })
     } else {
         res.redirect('/login')
     }
@@ -346,7 +354,7 @@ app.post('/transaction/get_data', function(req, res){
             console.log(error)
         }
         
-        // Parse the data and send it. We appened the user id to the results so we can audit who made what sales
+        // Parse the data and send it. We append the user id to the results so we can audit who made what sales
         results = JSON.parse(JSON.stringify(results))
         data = {}
         results.forEach(element => {
@@ -356,7 +364,6 @@ app.post('/transaction/get_data', function(req, res){
         res.send(JSON.stringify(data))
     })
 })
-
 
 // Inventory - New Item Route
 app.post('/inventory/new_item', function(req, res) {
@@ -430,6 +437,45 @@ app.post('/inventory/modify_item', function(req, res) {
         }
     })
 })
+
+// Returns
+app.get('/returns', function (req, res) {
+    if (req.session.loggedin) {
+        let return_query_string = 'SELECT * FROM products';
+
+        // Send the query, if it fails, log to console, if it succeeds, update the screen.
+        connection.query(return_query_string, function (error, results, fields) {
+            if (error) {
+                console.log("Dynamic dropdown population failed...");
+            } else {
+                res.render('returns', { sqlResults: results, returns: 1 });
+            }
+        })
+    } else {
+        res.redirect('/login')
+    }
+})
+
+app.post('/returns/', function (req, res) {
+    // Grab the necessary data from the POST request body
+    const productName = req.body.product_name_input;
+    const numProduct = req.body.quantity_input;
+
+    // res.render('transaction', { goodReturn: true, numProduct: numProduct, productName: productName });
+
+    let return_query_string = 'SELECT * FROM products';
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(return_query_string, function (error, results, fields) {
+        if (error) {
+            console.log("Dynamic dropdown population failed...");
+        } else {
+            res.render('returns', { sqlResults: results, returns: 1, numProduct: numProduct, productName: productName, goodReturn: true });
+
+        }
+    })
+})
+
 
 /*
 Listener

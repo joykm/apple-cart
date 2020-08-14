@@ -1,0 +1,43 @@
+{{!-- Return Header --}}
+<div class="row">
+    <div class="col">
+        <h3 class="display-4 text-left">Returns</h3>
+        <p class="text-left">Note: Returned items cannot go back on the shelf. They must be destroyed.</p>
+    </div>
+</div>
+
+
+{{!-- Return Form --}}
+<div class="row">
+    <div class="col">
+        <form action="/returns/" method="post">
+            <div class="form-row">
+
+                <div class="col">
+                    <label for="product_name_input">Product Name</label>
+                    <select class="form-control" id="product_name_input" name="product_name_input">
+                        {{#each sqlResults}}
+                        <option>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="quantity_input">Quantity</label>
+                    <input type="number" class="form-control" id="quantity_input" name="quantity_input" min="0" placeholder="0" required>
+                </div>
+
+                <div class="col">
+                    <label>&nbsp;</label>
+                    <div class="form-row">
+                        <div class="col"><button type="submit" class="btn btn-primary" id="gt_return_button">Return Item</button></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{#if goodReturn}}
+<p id="returnItem"><span class="text-success">You successfully returned {{numProduct}} {{productName}}.</span></p>
+{{/if}}
