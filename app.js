@@ -365,6 +365,7 @@ app.post('/transaction/get_data', function(req, res){
     })
 })
 
+<<<<<<< Updated upstream
 
 app.post('/transaction/return_item', function (req, res) {
     res.redirect('/transaction')
@@ -372,6 +373,8 @@ app.post('/transaction/return_item', function (req, res) {
 
 
 
+=======
+>>>>>>> Stashed changes
 // Inventory - New Item Route
 app.post('/inventory/new_item', function(req, res) {
 
@@ -444,6 +447,45 @@ app.post('/inventory/modify_item', function(req, res) {
         }
     })
 })
+
+// Returns
+app.get('/returns', function (req, res) {
+    if (req.session.loggedin) {
+        let return_query_string = 'SELECT * FROM products';
+
+        // Send the query, if it fails, log to console, if it succeeds, update the screen.
+        connection.query(return_query_string, function (error, results, fields) {
+            if (error) {
+                console.log("Dynamic dropdown population failed...");
+            } else {
+                res.render('returns', { sqlResults: results, transaction: 1 });
+            }
+        })
+    } else {
+        res.redirect('/login')
+    }
+})
+
+app.post('/returns/', function (req, res) {
+    // Grab the necessary data from the POST request body
+    const productName = req.body.product_name_input;
+    const numProduct = req.body.quantity_input;
+
+    // res.render('transaction', { goodReturn: true, numProduct: numProduct, productName: productName });
+
+    let return_query_string = 'SELECT * FROM products';
+
+    // Send the query, if it fails, log to console, if it succeeds, update the screen.
+    connection.query(return_query_string, function (error, results, fields) {
+        if (error) {
+            console.log("Dynamic dropdown population failed...");
+        } else {
+            res.render('returns', { sqlResults: results, transaction: 1, numProduct: numProduct, productName: productName, goodReturn: true });
+
+        }
+    })
+})
+
 
 /*
 Listener
