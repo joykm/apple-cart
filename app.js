@@ -365,16 +365,6 @@ app.post('/transaction/get_data', function(req, res){
     })
 })
 
-<<<<<<< Updated upstream
-
-app.post('/transaction/return_item', function (req, res) {
-    res.redirect('/transaction')
-})
-
-
-
-=======
->>>>>>> Stashed changes
 // Inventory - New Item Route
 app.post('/inventory/new_item', function(req, res) {
 
@@ -458,7 +448,7 @@ app.get('/returns', function (req, res) {
             if (error) {
                 console.log("Dynamic dropdown population failed...");
             } else {
-                res.render('returns', { sqlResults: results, transaction: 1 });
+                res.render('returns', { sqlResults: results, returns: 1 });
             }
         })
     } else {
@@ -480,7 +470,7 @@ app.post('/returns/', function (req, res) {
         if (error) {
             console.log("Dynamic dropdown population failed...");
         } else {
-            res.render('returns', { sqlResults: results, transaction: 1, numProduct: numProduct, productName: productName, goodReturn: true });
+            res.render('returns', { sqlResults: results, returns: 1, numProduct: numProduct, productName: productName, goodReturn: true });
 
         }
     })
