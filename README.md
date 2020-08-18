@@ -20,6 +20,8 @@ Front-End      | Back-End
 ---------------|---------
 HTML           |  Node.JS
 Bootstrap CSS  |  Express
+Javascript     |  Handlebars
+&nbsp;         |  Sessions
 &nbsp;         |  My SQL
 
 ### Database Design
