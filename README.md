@@ -6,7 +6,7 @@ A store inventory management system, built for the web.
 ![Monolith](./documentation/apple_cart_monolith.png)
 
 ### Contributors
-* Kevin Joy - joyke@oregonstate.edu
+* Kevin Joy
 * George Kochera
 * Blake Lester
 * Quinn Wilkins
