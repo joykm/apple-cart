@@ -4,9 +4,8 @@
   {{!-- Header/Title --}}
   <div class="row">
     <div class="col">
-        <h1 class="display-4 text-left">Inventory</h1>
+        <h1 class="display-4 text-left">Inventory Managment</h1>
         <p class="text-left">Low Shelf Inventory appears in<span class="text-danger"> red</span>.</p>
-        <p class="text-left">Inactive items appears in<span class="text-secondary"> gray</span>.</p>
         <p class="text-left">Users can click on the row to adjust shelf and warehouse thresholds.</p>
     </div>
   </div>
@@ -14,7 +13,6 @@
   {{!-- Inventory Management Dialogue --}}
   <div class="row">
       <div class="col">
-          <h3 class="text-center">Inventory Management</h3>
           {{!-- Add Item Form --}}
           <form action="/inventory/new_item" method="post">
               <div class="form-row">
@@ -32,12 +30,12 @@
 
                   <div class="col">
                       <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
-                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0" required>
+                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="#" required>
                   </div>
 
                   <div class="col">
                       <label for="product_shelf_inventory_input">Shelf Inventory</label>
-                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0" required>
+                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="#" required>
                   </div>
 
                   <div class="col">
@@ -65,7 +63,10 @@
                       <select class="form-control" id="product_name_input" name="product_name_input">
                           {{#each results}}
                           {{#if name}}
+                          {{#if not_catalog}}
+                          {{else}}
                           <option>{{name}}</option>
+                          {{/if}}
                           {{/if}}
                           {{/each}}
                       </select>
@@ -73,12 +74,12 @@
 
                   <div class="col">
                       <label for="product_warehouse_inventory_input">Warehouse Inventory</label>
-                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="0" required>
+                      <input type="number" class="form-control" id="product_warehouse_inventory_input" name="product_warehouse_inventory_input" min="0" placeholder="#" required>
                   </div>
 
                   <div class="col">
                       <label for="product_shelf_inventory_input">Shelf Inventory</label>
-                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="0" required>
+                      <input type="number" class="form-control" id="product_shelf_inventory_input" name="product_shelf_inventory_input" min="0" placeholder="#" required>
                   </div>
 
                   <div class="col">
@@ -118,7 +119,7 @@
         {{#each results}}
           {{#if name}}
             {{#if not_catalog}}
-            <tr class="gt_product">
+            {{!-- <tr class="gt_product">
               <td class="text-center bg-secondary gt_shelf_id">{{id}}</td>
               <td class="text-center bg-secondary">{{name}}</td>
               <td class="text-center bg-secondary">{{total_quantity}}</td>
@@ -129,7 +130,7 @@
               <td class="text-center bg-secondary">{{shelf_quantity}}</td>
               <td class="text-center bg-secondary gt_shelf_min_threshold">{{shelf_min_threshold}}</td>
               <td class="text-center bg-secondary gt_shelf_max_threshold">{{shelf_max_threshold}}</td>
-            </tr>
+            </tr> --}}
             {{else}}
             <tr class="gt_product">
               <td class="text-center gt_shelf_id">{{id}}</td>
