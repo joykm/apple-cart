@@ -14,7 +14,7 @@ A store inventory management system, built for the web.
 
 ### Technology Stack
 
-The Apple Cart uses a simple, lightweight technology stack.
+Apple Cart uses a simple, lightweight technology stack.
 
 Front-End      | Back-End
 ---------------|---------
