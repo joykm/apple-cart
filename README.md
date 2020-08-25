@@ -1,4 +1,4 @@
-# CS361-Group Project
+# Apple Cart
 
 A store inventory management system, built for the web.
 
