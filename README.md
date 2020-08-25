@@ -1,4 +1,4 @@
-# Apple Cart
+# apple-cart
 
 A store inventory management system, built for the web.
 
