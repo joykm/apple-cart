@@ -1,15 +1,14 @@
 // Set Node.js to Developer Environment
 process.env.NODE_ENV = 'development';
 
-
 // Set necessary credentials
-const HEROKU_DATABASE_CREDENTIALS = 'mysql://bc25d43d478ccf:7ad084d9@us-cdbr-east-02.cleardb.com/heroku_a083118dc17be74?reconnect=true';
+const HEROKU_DATABASE_CREDENTIALS = 'mysql://ba1daa5faf2c8b:3357f20d@us-cdbr-east-02.cleardb.com/heroku_88e32aa4439844b?reconnect=true‘&multipleStatements=true’';
 
 const LOCAL_DATABASE_CREDENTIALS = {
-    host: 'localhost',
-    user: 'myusername', // put your DB username here
-    password: 'mypassword', // put your DB password here
-    database: 'CS361_grocery', // put your DB name here
+    host: 'us-cdbr-east-02',
+    user: 'ba1daa5faf2c8b', // put your DB username here
+    password: '3357f20', // put your DB password here
+    database: 'heroku_88e32aa4439844b', // put your DB name here
     multipleStatements: true,
 };
 
