@@ -18,10 +18,10 @@ Apple Cart uses a simple, lightweight technology stack.
 
 Front-End      | Back-End
 ---------------|---------
-HTML           |  Node.JS
-Bootstrap CSS  |  Express
-&nbsp;         |  Handlebars
-&nbsp;         |  Sessions
+HTML           |  Node.js
+CSS	       |  Express
+Bootstrap      |  Handlebars
+Javascript     |  Session
 &nbsp;         |  My SQL
 
 ### Database Design
